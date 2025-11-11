@@ -55,6 +55,16 @@ export class AIPhotoshopService extends Service {
     }
   }
 
+  async start(): Promise<void> {
+    // Service is ready after initialization
+    logger.info('[AIPhotoshop] Service started');
+  }
+
+  async stop(): Promise<void> {
+    // Cleanup if needed
+    logger.info('[AIPhotoshop] Service stopped');
+  }
+
   /**
    * Build complete prompt with enhancements
    */
