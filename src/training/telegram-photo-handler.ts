@@ -51,42 +51,97 @@ export async function handleTelegramPhoto(
     const filled = Math.floor((photoCount / 20) * 10);
     progressBar = '▓'.repeat(filled) + '░'.repeat(10 - filled);
 
+    // Кнопки для действий
+    let replyMarkup: any = undefined;
+
     if (photoCount === 1) {
       message = `🎉 **Первое фото загружено!**\n\n` +
                 `📊 Прогресс: ${progressBar} ${photoCount}/20\n\n` +
                 `💪 Продолжай! Загрузи ещё ${9} фото для минимума`;
+
+      // Кнопка отмены
+      replyMarkup = {
+        inline_keyboard: [
+          [{ text: '❌ Отменить сбор фото', callback_data: 'train_cancel' }]
+        ]
+      };
     } else if (photoCount < 5) {
       message = `✨ **Фото ${photoCount} добавлено!**\n\n` +
                 `📊 ${progressBar} ${photoCount}/20\n\n` +
                 `🔥 Отлично! Ещё ${10 - photoCount} до минимума`;
+
+      replyMarkup = {
+        inline_keyboard: [
+          [{ text: '❌ Отменить', callback_data: 'train_cancel' }]
+        ]
+      };
     } else if (photoCount < 10) {
       message = `🚀 **Фото ${photoCount} загружено!**\n\n` +
                 `📊 ${progressBar} ${photoCount}/20\n\n` +
                 `💎 Супер! Ещё ${10 - photoCount} до готовности`;
+
+      replyMarkup = {
+        inline_keyboard: [
+          [{ text: '❌ Отменить', callback_data: 'train_cancel' }]
+        ]
+      };
     } else if (photoCount === 10) {
       message = `🎊 **Минимум достигнут! (${photoCount}/20)**\n\n` +
                 `📊 ${progressBar}\n\n` +
                 `✅ Уже можно начинать обучение!\n` +
-                `💡 Но можешь добавить ещё (до 20) для лучшего качества\n\n` +
-                `Готов? → \`/train confirm\``;
+                `💡 Но можешь добавить ещё (до 20) для лучшего качества`;
+
+      // Кнопки для подтверждения или отмены
+      replyMarkup = {
+        inline_keyboard: [
+          [
+            { text: '✅ Начать обучение', callback_data: 'train_confirm' },
+            { text: '❌ Отменить', callback_data: 'train_cancel' }
+          ]
+        ]
+      };
     } else if (photoCount < 15) {
       message = `💎 **${photoCount} фото загружено!**\n\n` +
                 `📊 ${progressBar} ${photoCount}/20\n\n` +
-                `🔥 Отличная коллекция! Чем больше - тем лучше результат\n\n` +
-                `Готов? → \`/train confirm\``;
+                `🔥 Отличная коллекция! Чем больше - тем лучше результат`;
+
+      replyMarkup = {
+        inline_keyboard: [
+          [
+            { text: '✅ Начать обучение', callback_data: 'train_confirm' },
+            { text: '❌ Отменить', callback_data: 'train_cancel' }
+          ]
+        ]
+      };
     } else if (photoCount < 20) {
       message = `🌟 **${photoCount} фото! Почти максимум!**\n\n` +
                 `📊 ${progressBar} ${photoCount}/20\n\n` +
-                `👑 Профессиональный подход! Модель будет огонь\n\n` +
-                `Готов? → \`/train confirm\``;
+                `👑 Профессиональный подход! Модель будет огонь`;
+
+      replyMarkup = {
+        inline_keyboard: [
+          [
+            { text: '✅ Начать обучение', callback_data: 'train_confirm' },
+            { text: '❌ Отменить', callback_data: 'train_cancel' }
+          ]
+        ]
+      };
     } else {
       message = `👑 **МАКСИМУМ! ${photoCount} фото загружено!**\n\n` +
                 `📊 ${progressBar} ${photoCount}/20\n\n` +
-                `🏆 Идеальная коллекция! Модель будет топовой\n\n` +
-                `Начинаем! → \`/train confirm\``;
+                `🏆 Идеальная коллекция! Модель будет топовой`;
+
+      replyMarkup = {
+        inline_keyboard: [
+          [
+            { text: '✅ Начать обучение', callback_data: 'train_confirm' },
+            { text: '❌ Отменить', callback_data: 'train_cancel' }
+          ]
+        ]
+      };
     }
 
-    await ctx.reply(message);
+    await ctx.reply(message, replyMarkup ? { reply_markup: replyMarkup } : undefined);
 
     logger.info(`[TelegramPhotoHandler] Photo ${photoCount} added for user ${userId}`);
   } catch (error) {

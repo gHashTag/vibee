@@ -6,6 +6,7 @@
 import { Plugin, IAgentRuntime, Service, logger } from '@elizaos/core';
 import { PhotoCollectorService, ZipService, trainLoraAction } from './training';
 import { handleTelegramPhoto } from './training/telegram-photo-handler';
+import { handleTelegramCallback } from './training/telegram-callback-handler';
 
 /**
  * Сервис для обработки фото из Telegram
@@ -77,6 +78,65 @@ class TelegramPhotoService extends Service {
 }
 
 /**
+ * Сервис для обработки callback от inline кнопок
+ */
+class TelegramCallbackService extends Service {
+  static serviceType = 'telegram-callback-handler';
+  capabilityDescription = 'Handles inline keyboard button callbacks for LoRA training';
+
+  async initialize(runtime: IAgentRuntime): Promise<void> {
+    logger.info('[TelegramCallbackService] 🔍 Initializing...');
+
+    // Слушаем callback_query события
+    runtime.on('TELEGRAM_CALLBACK_QUERY', async (data: any) => {
+      try {
+        logger.info('[TelegramCallbackService] 🔘 TELEGRAM_CALLBACK_QUERY event fired!');
+
+        const ctx = data.ctx;
+        const callbackQuery = ctx?.callbackQuery;
+
+        if (!callbackQuery) {
+          logger.warn('[TelegramCallbackService] No callback_query in event data');
+          return;
+        }
+
+        const userId = callbackQuery.from?.id?.toString() || data.message?.entityId;
+        const callbackData = callbackQuery.data;
+
+        logger.info('[TelegramCallbackService] 🔘 Callback received:', {
+          userId,
+          callbackData,
+          fromUser: callbackQuery.from?.username,
+        });
+
+        // Обрабатываем только callback для обучения
+        if (callbackData?.startsWith('train_')) {
+          await handleTelegramCallback(runtime, userId, callbackData, ctx);
+        }
+      } catch (error) {
+        logger.error('[TelegramCallbackService] ❌ Error handling callback:', error);
+      }
+    });
+
+    logger.info('[TelegramCallbackService] ✅ Initialized - listening for TELEGRAM_CALLBACK_QUERY events');
+  }
+
+  static async start(runtime: IAgentRuntime): Promise<TelegramCallbackService> {
+    const service = new TelegramCallbackService(runtime);
+    await service.initialize(runtime);
+    return service;
+  }
+
+  async stop(): Promise<void> {
+    logger.info('[TelegramCallbackService] Stopping...');
+  }
+
+  async cleanup(): Promise<void> {
+    await this.stop();
+  }
+}
+
+/**
  * Плагин обучения
  */
 export const trainingPlugin: Plugin = {
@@ -87,6 +147,7 @@ export const trainingPlugin: Plugin = {
     PhotoCollectorService,
     ZipService,
     TelegramPhotoService, // Обработка входящих фото
+    TelegramCallbackService, // Обработка кнопок
   ],
 
   actions: [
@@ -98,5 +159,6 @@ logger.info('🎨 [TRAINING PLUGIN] Module loaded - plugin exported');
 logger.info('🎨 [TRAINING PLUGIN] Plugin name:', trainingPlugin.name);
 logger.info('🎨 [TRAINING PLUGIN] Services:', trainingPlugin.services.map((s: any) => s.serviceType || s.name));
 logger.info('🎨 [TRAINING PLUGIN] Actions:', trainingPlugin.actions.map((a: any) => a.name));
+logger.info('🎨 [TRAINING PLUGIN] Features: Photos with callbacks + inline buttons');
 
 export default trainingPlugin;
