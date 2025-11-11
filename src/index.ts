@@ -6,6 +6,8 @@ import telegramDebugPlugin from './telegram-debug-plugin.ts';
 import telegramStartPlugin from './telegram-start-plugin.ts';
 import telegramServiceStarter from './telegram-service-starter.ts';
 import { initializeInfisical } from './infisical.ts';
+import { aiPhotoshopPlugin } from './ai-photoshop/index.ts';
+import { trainingPlugin } from './training-plugin.ts';
 
 // 🔐 КРИТИЧНО: Загружаем секреты из Infisical ДО импорта character
 await initializeInfisical();
@@ -23,11 +25,13 @@ export const projectAgent: ProjectAgent = {
   init: async (runtime: IAgentRuntime) => await initCharacter({ runtime }),
   plugins: [
     telegramServiceStarter, // 🔧 Ensures TelegramService is running (must be first!)
-    telegramStartPlugin, // 🚀 /start command handler (uses events)
+    telegramStartPlugin,    // 🚀 /start command handler (uses events)
     telegramDebugPlugin,
     telegramCommandsPlugin,
     telegramUIPlugin,
     starterPlugin,
+    trainingPlugin,         // 🎨 LoRA training через Telegram фото
+    aiPhotoshopPlugin,      // 🖼️ AI-обработка изображений (7 моделей)
   ],
 };
 
