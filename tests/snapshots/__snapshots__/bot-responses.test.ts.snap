@@ -1,0 +1,141 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`Bot Response Snapshots /start Command Responses should match snapshot for /start welcome message 1`] = `
+{
+  "chat": {
+    "id": 123456,
+    "type": "private",
+  },
+  "date": "[DYNAMIC]",
+  "from": {
+    "first_name": "Mock Bot",
+    "id": 123456789,
+    "is_bot": true,
+    "username": "vibee_bot",
+  },
+  "message_id": "[DYNAMIC]",
+  "text": "Привет! 👋 Я Vibee, твой AI-наставник по vibe-coding! Чем могу помочь?",
+}
+`;
+
+exports[`Bot Response Snapshots /menu Command Responses should match snapshot for /menu 1`] = `
+{
+  "chat": {
+    "id": 123456,
+    "type": "private",
+  },
+  "date": "[DYNAMIC]",
+  "from": {
+    "first_name": "Mock Bot",
+    "id": 123456789,
+    "is_bot": true,
+    "username": "mock_bot",
+  },
+  "message_id": "[DYNAMIC]",
+  "text": 
+"📋 Меню команд:
+
+/start - Начать общение
+/menu - Показать меню
+/help - Помощь
+
+Или просто напиши что тебе нужно!"
+,
+}
+`;
+
+exports[`Bot Response Snapshots /help Command Responses should match snapshot for /help 1`] = `
+{
+  "chat": {
+    "id": 123456,
+    "type": "private",
+  },
+  "date": "[DYNAMIC]",
+  "from": {
+    "first_name": "Mock Bot",
+    "id": 123456789,
+    "is_bot": true,
+    "username": "mock_bot",
+  },
+  "message_id": "[DYNAMIC]",
+  "text": 
+"❓ Помощь:
+
+Я помогу тебе с:
+- Vibe-coding практиками
+- TypeScript и современным JS
+- React и Next.js
+- ElizaOS и AI-агентами
+
+Просто спроси! 💪"
+,
+}
+`;
+
+exports[`Bot Response Snapshots Error Messages should match snapshot for error response 1`] = `
+{
+  "chat": {
+    "id": 123456,
+    "type": "private",
+  },
+  "date": "[DYNAMIC]",
+  "from": {
+    "first_name": "Mock Bot",
+    "id": 123456789,
+    "is_bot": true,
+    "username": "mock_bot",
+  },
+  "message_id": "[DYNAMIC]",
+  "text": "❌ Не знаю такой команды. Напиши /help для списка команд.",
+}
+`;
+
+exports[`Bot Response Snapshots Multiple Message Sequences should match snapshot for conversation flow 1`] = `
+[
+  {
+    "chat": {
+      "id": 123456,
+      "type": "private",
+    },
+    "date": "[DYNAMIC]",
+    "from": {
+      "first_name": "Mock Bot",
+      "id": 123456789,
+      "is_bot": true,
+      "username": "mock_bot",
+    },
+    "message_id": "[DYNAMIC]",
+    "text": "Response to /start",
+  },
+  {
+    "chat": {
+      "id": 123456,
+      "type": "private",
+    },
+    "date": "[DYNAMIC]",
+    "from": {
+      "first_name": "Mock Bot",
+      "id": 123456789,
+      "is_bot": true,
+      "username": "mock_bot",
+    },
+    "message_id": "[DYNAMIC]",
+    "text": "Response to /menu",
+  },
+  {
+    "chat": {
+      "id": 123456,
+      "type": "private",
+    },
+    "date": "[DYNAMIC]",
+    "from": {
+      "first_name": "Mock Bot",
+      "id": 123456789,
+      "is_bot": true,
+      "username": "mock_bot",
+    },
+    "message_id": "[DYNAMIC]",
+    "text": "Response to /help",
+  },
+]
+`;
