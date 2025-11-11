@@ -11,19 +11,24 @@ import { fal } from '@fal-ai/client';
 
 export const trainLoraAction: Action = {
   name: 'TRAIN_LORA',
-  similes: ['TRAIN_FACE', 'TRAIN_START', 'TRAIN_CONFIRM', 'TRAIN_CANCEL'],
+  similes: ['TRAIN_FACE', 'TRAIN_START', 'TRAIN_CONFIRM', 'TRAIN_CANCEL', 'TRAIN_HELP'],
   description: `Обучение LoRA модели через фото из Telegram.
 
 Команды:
 - /train start <название> <триггер> - начать сбор фото
 - /train confirm - завершить и запустить обучение
-- /train cancel - отменить сбор`,
+- /train cancel - отменить сбор
+- /train help - справка`,
 
   validate: async (_runtime: IAgentRuntime, message: Memory): Promise<boolean> => {
     const text = message.content?.text?.toLowerCase();
     if (!text) return false;
-    return text.includes('/train');
+    // Точно проверяем что это команда /train, а не просто упоминание слова
+    return text.startsWith('/train') || text.includes(' /train');
   },
+
+  // Не генерировать автоматический ответ через LLM
+  suppressGeneratedResponse: true,
 
   handler: async (
     runtime: IAgentRuntime,
