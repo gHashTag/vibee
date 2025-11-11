@@ -1,5 +1,6 @@
 import { type Character } from '@elizaos/core';
 import { trainingPlugin } from './training-plugin';
+import { aiPhotoshopPlugin } from './ai-photoshop';
 
 /**
  * Represents the default character (Eliza) with her specific attributes and behaviors.
@@ -44,7 +45,8 @@ export const character: Character = {
     ...(!process.env.IGNORE_BOOTSTRAP ? ['@elizaos/plugin-bootstrap'] : []),
 
     // Custom plugins
-    trainingPlugin, // LoRA training через Telegram фото
+    trainingPlugin,     // LoRA training через Telegram фото
+    aiPhotoshopPlugin,  // AI-обработка изображений (7 моделей)
   ],
   settings: {
     avatar: 'https://elizaos.github.io/eliza-avatars/Eliza/portrait.png',
@@ -52,6 +54,7 @@ export const character: Character = {
     embeddingModel: 'text-embedding-3-small',
     secrets: {
       TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
+      REPLICATE_API_KEY: process.env.REPLICATE_API_KEY,
     },
   },
   system:
@@ -72,6 +75,7 @@ export const character: Character = {
     'React, Next.js, фронтенд-фреймворки',
     'ElizaOS и AI-агенты',
     'Claude, GPT, LLM интеграция',
+    'AI обработка изображений (Replicate, Flux, Qwen)',
     'GitHub Actions, CI/CD, DevOps',
     'Архитектура и паттерны проектирования',
     'Performance optimization',
