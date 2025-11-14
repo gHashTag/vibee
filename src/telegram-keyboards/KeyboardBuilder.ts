@@ -153,6 +153,51 @@ export class KeyboardBuilder {
         this.callback('◀️ Назад', 'back', 0);
         break;
 
+      case 'training_quality':
+        this.callback('⚡ Быстро (1-5 шагов)', 'train_quick', 0)
+          .callback('🔥 Стандартно (10-15 шагов)', 'train_standard', 0)
+          .callback('💎 Качественно (20-30 шагов)', 'train_quality', 1)
+          .callback('◀️ Назад', 'back', 1);
+        break;
+
+      case 'training_steps':
+        this.callback('1 шаг', 'steps_1', 0)
+          .callback('5 шагов', 'steps_5', 0)
+          .callback('10 шагов', 'steps_10', 1)
+          .callback('20 шагов', 'steps_20', 1)
+          .callback('30 шагов', 'steps_30', 2)
+          .callback('50 шагов', 'steps_50', 2)
+          .callback('◀️ Назад', 'back', 3);
+        break;
+
+      case 'training_start':
+        this.callback('✅ Начать обучение', 'train_confirm', 0)
+          .callback('📋 Мои модели', 'train_list', 0)
+          .callback('❌ Отменить', 'train_cancel', 1);
+        break;
+
+      case 'content_hooks':
+        this.callback('1️⃣ Агрессивный/Хайповый', 'hook_aggressive', 0)
+          .callback('2️⃣ Профессиональный/Экспертный', 'hook_professional', 0)
+          .callback('3️⃣ Сторителлинг/Эмоциональный', 'hook_storytelling', 1)
+          .callback('🔄 Перегенерировать', 'regen_hook', 1);
+        break;
+
+      case 'content_voices':
+        this.callback('👩 Nova - Энергичный (жен.)', 'voice_nova', 0)
+          .callback('🎤 Alloy - Нейтральный (универс.)', 'voice_alloy', 0)
+          .callback('🎭 Fable - Британский (экспрессивн.)', 'voice_fable', 1)
+          .callback('⏮️ Назад к тексту', 'back_to_text', 2);
+        break;
+
+      case 'content_final':
+        this.callback('📤 Опубликовать', 'content_publish', 0)
+          .callback('💾 Сохранить', 'content_save', 0)
+          .callback('🔄 Перегенерировать видео', 'regen_video', 1)
+          .callback('⏮️ К изображению', 'back_to_image', 2)
+          .callback('❌ Завершить', 'content_finish', 3);
+        break;
+
       case 'custom':
         // User will add buttons manually
         break;

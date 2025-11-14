@@ -6,6 +6,11 @@
 import { IAgentRuntime, IDatabaseAdapter } from '@elizaos/core';
 import { AvatarFaceEntity, FaceGenerationEntity, AvatarFace } from './types';
 import { v4 as uuidv4 } from 'uuid';
+import { safeJsonParse } from '../security/ValidationUtils';
+import { z } from 'zod';
+
+// Схема валидации для tags
+const TagsSchema = z.array(z.string()).optional();
 
 // ============================================================================
 // Database Schema Initialization
@@ -368,7 +373,12 @@ export function entityToModel(entity: AvatarFaceEntity): AvatarFace {
     lastUsedAt: entity.last_used_at || undefined,
 
     description: entity.description || undefined,
-    tags: entity.tags ? JSON.parse(entity.tags) : undefined,
+    tags: safeJsonParse(
+      entity.tags || '[]',
+      TagsSchema,
+      [],
+      'avatar_face_tags'
+    ),
     modelVersion: entity.model_version,
 
     createdAt: entity.created_at,

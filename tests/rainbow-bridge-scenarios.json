@@ -1,0 +1,114 @@
+{
+  "config": {
+    "bot_username": "agent_vibecoder_bot"
+  },
+  "testSuites": [
+    {
+      "name": "conversational_interface",
+      "description": "Тесты разговорного интерфейса - кнопки запускают диалог",
+      "scenarios": [
+        {
+          "id": "CONV_001",
+          "description": "Тест приветствия - кнопки запускают диалог",
+          "priority": "critical",
+          "steps": [
+            {
+              "action": "send_message",
+              "data": "/start",
+              "wait_ms": 3000
+            }
+          ],
+          "expected": {
+            "contains": [
+              "Vibee",
+              "коллега"
+            ],
+            "not_contains": [
+              "Быстро",
+              "Стандартно",
+              "Качественно"
+            ],
+            "min_length": 50
+          }
+        },
+        {
+          "id": "CONV_002",
+          "description": "Тест кнопки 'Показать команды' - запускает диалог",
+          "priority": "critical",
+          "steps": [
+            {
+              "action": "send_message",
+              "data": "/start",
+              "wait_ms": 3000
+            },
+            {
+              "action": "click_button",
+              "data": "Показать команды",
+              "wait_ms": 3000
+            }
+          ],
+          "expected": {
+            "contains": [
+              "команды",
+              "список"
+            ],
+            "min_length": 100
+          }
+        },
+        {
+          "id": "CONV_003",
+          "description": "Тест команды 'покажи новости' - диалоговый режим",
+          "priority": "critical",
+          "steps": [
+            {
+              "action": "send_message",
+              "data": "покажи новости",
+              "wait_ms": 3000
+            }
+          ],
+          "expected": {
+            "contains": [
+              "новост",
+              "последн"
+            ],
+            "min_length": 50
+          }
+        },
+        {
+          "id": "CONV_004",
+          "description": "Тест диалога - создание рилз из новости",
+          "priority": "critical",
+          "steps": [
+            {
+              "action": "send_message",
+              "data": "/start",
+              "wait_ms": 3000
+            },
+            {
+              "action": "send_message",
+              "data": "покажи новости",
+              "wait_ms": 3000
+            },
+            {
+              "action": "send_message",
+              "data": "создай рилз",
+              "wait_ms": 5000
+            }
+          ],
+          "expected": {
+            "contains": [
+              "созда",
+              "рилз",
+              "иде"
+            ],
+            "not_contains": [
+              "ERROR",
+              "error"
+            ],
+            "min_length": 100
+          }
+        }
+      ]
+    }
+  ]
+}

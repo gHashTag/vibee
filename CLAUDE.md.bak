@@ -1,0 +1,106 @@
+# CLAUDE.md
+This is the project documentation file that references the unified rules and standards defined in AGENT_MD.md. This document provides project-specific guidelines and implementation details for Claude agents.
+This is the project documentation file that references the unified rules and standards defined in AGENT_MD.md. This document provides project-specific guidelines and implementation details for Claude agents.
+
+## Project Overview
+
+This is the Vibee project, an AI-powered Telegram bot built on the ElizaOS framework. The bot serves as an expert AI mentor for vibe-coding and modern development practices. It specializes in TypeScript, React, Bun, ElizaOS, AI agents and related technologies.
+
+## Agent Communication Protocols
+
+### Language Rules
+- **Internal Communication**: All direct agent-to-agent communication should be conducted exclusively in Russian to maintain consistency with the primary user base and maintain cultural alignment.
+- **Code Writing**: All code implementation should be written in English, regardless of the natural language of the agent operators.
+- **Documentation & Comments**: Documentation and inline comments may be in Russian (as appropriate for project localization needs) but internal APIs, technical documentation, and code comments should remain in English.
+
+## Core Requirements
+
+### Agent Identity
+1. All agents must identify themselves clearly to their operator
+2. Must reference this AGENT_MD.md document for standardized rules
+3. Should use operator-specific identifiers when communicating with humans
+4. All commands must be prefixed with operator identifier
+
+### Compliance with Standards
+1. All agents must comply with the standards defined in AGENT_MD.md
+2. CLAUDE.md provides project-specific implementation guidelines
+3. CRUSH.md contains technical documentation for implementation details
+4. Other project documentation as needed
+
+### Code Execution Standards
+1. **Safety First**: All commands that involve modifying code or system files must be reviewed and confirmed by the operator before execution
+2. **Backup Protocols**: Before any destructive modifications, create backup files with timestamped names
+3. **Testing Requirements**: All code changes must be tested in a separate environment before production deployment
+4. **Logging**: Every modification should produce a clear audit log
+
+### Behavior Specifications
+1. **Respectful Interaction**: Maintain a professional, encouraging tone when interacting with human operators
+2. **Consistency**: Follow established naming conventions, formatting standards, and architectural patterns
+3. **Accuracy**: Provide factually correct information and avoid speculative claims
+4. **Helpfulness**: Focus on delivering practical solutions to technical challenges
+
+## Operational Guidelines
+
+### System Integration
+- Integrate with all established plugins and services as documented in CLAUDE.md and CRUSH.md
+- Follow proper initialization sequences for services
+- Implement fallback mechanisms for unavailable services
+- Monitor system health and report issues promptly
+
+### Development Process
+1. **Branch Management**: Work on feature branches with descriptive names
+2. **Code Review**: Submit pull requests with detailed descriptions
+3. **Testing**: Ensure comprehensive test coverage for new functionality
+4. **Documentation**: Update documentation alongside code changes
+
+### Error Handling
+1. Log all errors with detailed context
+2. Implement graceful degradation when services are unavailable
+3. Provide actionable error messages to operators
+4. Follow established error response patterns
+
+## Communication Protocols
+
+### Operator Communication
+1. All communications with human operators should be conducted exclusively in Russian
+2. Use clear, structured messaging formats
+3. Provide regular progress updates for complex tasks
+4. Ask clarifying questions when requirements are unclear
+
+### Agent Coordination
+1. When working with other agents, use the standardized channel naming convention
+2. Coordinate task assignments through established communication channels
+3. Share knowledge and insights that benefit the team
+
+## Reference Documents
+
+All agents should reference these documents for proper context:
+- AGENT_MD.md - Unified rules and standards (central document)
+- CLAUDE.md - Project-specific guidelines and implementation details
+- CRUSH.md - Technical implementation documentation
+- Any project-specific documentation in the docs/ folder
+
+## Integration Points
+
+This project is designed with a modular architecture that allows agents to work with the following components:
+1. Telegram API integration via `@elizaos/plugin-telegram`
+2. Multiple LLM providers (Anthropic, OpenAI, Google, Ollama, etc.)
+3. AI Models (Replicate, Qwen, Flux etc.) via AI Photoshop plugin
+4. Database integration (SQL via `@elizaos/plugin-sql`)
+5. Image processing (7 models) via AI Photoshop integration
+6. LoRA model training and face management with MCP integration
+
+## Code Style and Conventions
+
+### General Principles
+- Follow ESLint and Prettier rules consistently
+- Maintain consistent naming conventions as outlined in documentation
+- Write code that is readable and maintainable
+- Prioritize performance and efficiency in implementations
+
+### Architecture Patterns
+- Services-oriented architecture with dependency injection
+- Plugin-based architecture leveraging ElizaOS framework
+- Action-based messaging pattern (plugins define actions)
+- Provider pattern for external integrations
+- Service lifecycle management (start/stop)

@@ -1,122 +1,69 @@
-# Project Starter
+# Vibee - AI-Powered Vibe Coding Bot 🤖
 
-This is the starter template for ElizaOS projects.
+> **Vibee** - это ИИ-агент на базе Элизы (ElizaOS), который работает как наставник по современной разработке в Телеграме.
 
-## Features
+## ✨ Как пользоваться
 
-- Pre-configured project structure for ElizaOS development
-- Comprehensive testing setup with component and e2e tests
-- Default character configuration with plugin integration
-- Example service, action, and provider implementations
-- TypeScript configuration for optimal developer experience
-- Built-in documentation and examples
+**Просто напишите боту или используйте кнопки:**
 
-## Getting Started
+### 🎨 Обучение модели
+- Нажмите "**🎨 Обучение модели**" в главном меню
+- Или напишите: "**обучение**", "**модель**", "**создать лицо**"
 
-```bash
-# Create a new project
-elizaos create --type project my-project
-# Dependencies are automatically installed and built
+### 🧪 Самопроверка
+- Нажмите "**🔧 Инструменты**" → "**Самопроверка**"
+- Или напишите: "**тест**", "**проверка**"
 
-# Navigate to the project directory
-cd my-project
+### 💡 Все остальное
+- Просто пишите вопросы или используйте кнопки в меню
 
-# Start development immediately
-elizaos dev
-```
+## 🌈 Радужный мост
 
-## Development
+**Уникальная фишка проекта** - система автономного тестирования через реальный Телеграм.
 
 ```bash
-# Start development with hot-reloading (recommended)
-elizaos dev
+# Критичные тесты
+python3 scripts/rainbow-bridge-runner.py tests/rainbow-bridge-scenarios.json --critical-only
 
-# OR start without hot-reloading
-elizaos start
-# Note: When using 'start', you need to rebuild after changes:
-# bun run build
-
-# Test the project
-elizaos test
+# Все тесты
+python3 scripts/rainbow-bridge-runner.py tests/rainbow-bridge-scenarios.json
 ```
 
-## Testing
+## 🔥 Фишки проекта
 
-ElizaOS employs a dual testing strategy:
+1. **🎨 Обучение LoRA** - юзер отправляет 5-10 фоток, бот обучает ИИ распознавать его лицо
+2. **🖼️ ИИ-фотошоп** - 7 моделей для обработки картинок (фон, стиль, улучшение качества)
+3. **🌈 Радужный мост** - бот сам себя тестирует через реальный Телеграм без человека
+4. **⌨️ Кнопочный интерфейс** - красивые меню с кнопками вместо слэш-команд
 
-1. **Component Tests** (`src/__tests__/*.test.ts`)
+## 🚀 Запуск
 
-   - Run with Bun's native test runner
-   - Fast, isolated tests using mocks
-   - Perfect for TDD and component logic
+```bash
+# Ставим зависимости
+npm install
 
-2. **E2E Tests** (`src/__tests__/e2e/*.e2e.ts`)
-   - Run with ElizaOS custom test runner
-   - Real runtime with actual database (PGLite)
-   - Test complete user scenarios
+# Запускаем в режиме разработки
+npm run dev
 
-### Test Structure
-
-```
-src/
-  __tests__/              # All tests live inside src
-    *.test.ts            # Component tests (use Bun test runner)
-    e2e/                 # E2E tests (use ElizaOS test runner)
-      project-starter.e2e.ts  # E2E test suite
-      README.md          # E2E testing documentation
-  index.ts               # Export tests here: tests: [ProjectStarterTestSuite]
+# Запускаем тесты
+npm test
 ```
 
-### Running Tests
+## 🛠️ Архитектура
 
-- `elizaos test` - Run all tests (component + e2e)
-- `elizaos test component` - Run only component tests
-- `elizaos test e2e` - Run only E2E tests
+- `src/character.ts` - личность и настройки агента Виби
+- `src/training-plugin.ts` - обучение LoRA через телеграм-фото
+- `src/telegram-*.ts` - плагины для работы с Телеграмом
+- `src/telegram-keyboards/` - система кнопок и меню
+- `scripts/rainbow-bridge-*.py` - скрипты автономного тестирования
 
-### Writing Tests
+## 📚 Важно помнить
 
-Component tests use bun:test:
+- **Пользователи - новички** - делаем интерфейс максимально простым и понятным
+- **Телеграм на первом месте** - весь функционал через кнопки и текст
+- **Русский язык** - все объяснения и сообщения на русском
+- **Без слэш-команд** - используем только кнопки и естественный текст
 
-```typescript
-// Unit test example (__tests__/config.test.ts)
-describe('Configuration', () => {
-  it('should load configuration correctly', () => {
-    expect(config.debug).toBeDefined();
-  });
-});
+---
 
-// Integration test example (__tests__/integration.test.ts)
-describe('Integration: Plugin with Character', () => {
-  it('should initialize character with plugins', async () => {
-    // Test interactions between components
-  });
-});
-```
-
-E2E tests use ElizaOS test interface:
-
-```typescript
-// E2E test example (e2e/project.test.ts)
-export class ProjectTestSuite implements TestSuite {
-  name = 'project_test_suite';
-  tests = [
-    {
-      name: 'project_initialization',
-      fn: async (runtime) => {
-        // Test project in a real runtime
-      },
-    },
-  ];
-}
-
-export default new ProjectTestSuite();
-```
-
-The test utilities in `__tests__/utils/` provide helper functions to simplify writing tests.
-
-## Configuration
-
-Customize your project by modifying:
-
-- `src/index.ts` - Main entry point
-- `src/character.ts` - Character definition
+*"Не всякий род" - помним это правило. Делаем всё максимально понятным для русскоязычных ребят.*

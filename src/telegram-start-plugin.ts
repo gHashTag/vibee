@@ -1,68 +1,149 @@
-import { Service, logger, type IAgentRuntime } from '@elizaos/core';
+import { logger, type IAgentRuntime, type Plugin, Service } from '@elizaos/core';
+
+logger.info('🚀 [START PLUGIN] Module loaded - exporting plugin');
 
 /**
- * Service that handles /start command using TELEGRAM_SLASH_START event
+ * Service that registers /start command handler directly with Telegraf
  */
 class TelegramStartService extends Service {
   static serviceType = 'telegram-start-handler';
+  capabilityDescription = 'Handles /start command for Telegram bot';
 
-  static async start(runtime: IAgentRuntime): Promise<TelegramStartService> {
+  static async start(runtime: IAgentRuntime): Promise<Service> {
     const service = new TelegramStartService(runtime);
     await service.initialize(runtime);
     return service;
   }
 
+  async stop(): Promise<void> {
+    // Service stopped
+  }
+
   async initialize(runtime: IAgentRuntime): Promise<void> {
-    logger.info('🎯 TelegramStartService initializing - listening for TELEGRAM_SLASH_START');
+    logger.info('[TelegramStartService] 🔍 Initializing...');
 
-    // Listen for /start command event (emitted by TelegramService)
-    runtime.on('TELEGRAM_SLASH_START', async (data: any) => {
-      logger.info('🚀 /start command received!');
+    // Wait for TelegramService to be available - but DON'T wait for bot
+    const maxAttempts = 20;
+    let telegramService = null;
 
-      const ctx = data.ctx;
-      if (!ctx) {
-        logger.error('❌ No ctx in TELEGRAM_SLASH_START event');
-        return;
+    for (let i = 0; i < maxAttempts; i++) {
+      telegramService = runtime.getService('telegram');
+      if (telegramService) {
+        logger.info('[TelegramStartService] ✅ Found TelegramService');
+        break;
       }
+      logger.info(`[TelegramStartService] Waiting for TelegramService... (attempt ${i + 1}/${maxAttempts})`);
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
 
-      const userName = ctx.from?.first_name || ctx.from?.username || 'друг';
+    if (!telegramService) {
+      logger.error('[TelegramStartService] ⚠️ TelegramService not found');
+      return;
+    }
 
-      const welcomeText = `👋 Привет, ${userName}!
+    // Wait for bot to be created
+    const maxBotAttempts = 40;
+    for (let i = 0; i < maxBotAttempts; i++) {
+      if (telegramService.bot) {
+        logger.info('[TelegramStartService] ✅ Found bot instance');
+        break;
+      }
+      logger.info(`[TelegramStartService] Waiting for bot... (attempt ${i + 1}/${maxBotAttempts})`);
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
 
-Я **Vibee** - твой AI-наставник по vibe-coding и современной разработке!
+    if (!telegramService.bot) {
+      logger.error('[TelegramStartService] ⚠️ Bot not found after waiting');
+      return;
+    }
 
-🚀 **Что я умею:**
+    // MONKEY PATCH: Wrap handleUpdate to intercept /start before it reaches other handlers
+    const currentHandleUpdate = telegramService.bot.handleUpdate.bind(telegramService.bot);
+
+    telegramService.bot.handleUpdate = async function (update: any, webhookReply?: any) {
+      const text = update.message?.text || update.channel_post?.text;
+
+      // Check if this is a /start command
+      if (text && text.toLowerCase().trim() === '/start') {
+        try {
+          logger.info('[TelegramStartService] 🚀 /start command intercepted!');
+
+          const chatId = update.message?.chat?.id || update.channel_post?.chat?.id;
+          const userName = update.message?.from?.first_name || update.channel_post?.from?.first_name || 'друг';
+
+          if (!chatId) {
+            logger.error('[TelegramStartService] ❌ No chat ID found');
+            return currentHandleUpdate(update, webhookReply);
+          }
+
+          const welcomeText = `👋 Привет, <b>${userName}</b>!
+
+Я <b>Vibee</b> - твой AI-наставник по vibe-coding и современной разработке!
+
+🚀 <b>Что я умею:</b>
 • Обучать современным технологиям
-• Показывать примеры кода
-• Помогать с ошибками
+• Помогать с кодом и ошибками
 • Делиться best practices
-• Рекомендовать инструменты
+• Создавать контент и новости
+• Обучать AI-модели по твоим фото
 
-💡 **Как со мной работать:**
-Просто пиши свои вопросы, и я буду отвечать с интерактивными кнопками для удобства!
+💬 <b>Просто напиши мне!</b> Я умею общаться как человек и помогу с любыми вопросами по разработке.
 
-Попробуй команды:
-/menu - главное меню
-/help - помощь`;
+Например, можешь спросить:
+• "Как настроить Bun?"
+• "Покажи пример React компонента"
+• "Хочу обучить AI-модель по моим фото"
+• "Что нового в TypeScript?"
+• "Помоги с ошибкой в коде"
 
-      try {
-        // Show typing indicator
-        await ctx.sendChatAction('typing');
+Или просто начни диалог - я пойму, что тебе нужно! 🤖`;
 
-        // Send welcome message
-        await ctx.reply(welcomeText, { parse_mode: 'Markdown' });
-        logger.info('✅ Sent /start response');
-      } catch (error) {
-        logger.error('❌ Failed to send /start:', error);
+          // Простое меню только для навигации
+          const buttons = {
+            inline_keyboard: [
+              [{ text: '📰 Показать новости', callback_data: 'show_news' }],
+              [{ text: '📝 Мои шаблоны', callback_data: 'menu_templates' }],
+              [{ text: '🎨 Про обучение моделей', callback_data: 'menu_training' }],
+            ],
+          };
+
+          await telegramService.bot.telegram.sendMessage(chatId, welcomeText, {
+            parse_mode: 'HTML',
+            reply_markup: buttons,
+          });
+          logger.info('[TelegramStartService] ✅ Sent /start response with inline keyboard');
+
+          // Emit TELEGRAM_SLASH_START event
+          const ctx = {
+            from: update.message?.from || update.channel_post?.from,
+            chat: update.message?.chat || update.channel_post?.chat,
+            message: update.message || update.channel_post,
+          };
+          runtime.emit('TELEGRAM_SLASH_START', { ctx });
+
+          // DON'T call originalHandleUpdate - stop here
+          return;
+        } catch (error) {
+          logger.error('[TelegramStartService] ❌ Failed to send /start:', error);
+          // Fall through to original handler on error
+        }
       }
-    });
 
-    logger.info('✅ Listening for /start events');
+      // For all other messages, pass through to original handler
+      // which will process them and emit TELEGRAM_MESSAGE_RECEIVED
+      return currentHandleUpdate(update, webhookReply);
+    };
+
+    logger.info('[TelegramStartService] ✅ Monkey-patched bot.handleUpdate to intercept /start');
   }
 }
 
-export default {
+export const telegramStartPlugin: Plugin = {
   name: 'telegram-start-handler',
   description: 'Handles /start command for Telegram bot',
   services: [TelegramStartService],
 };
+
+logger.info('🚀 [START PLUGIN] Plugin exported');
+
+export default telegramStartPlugin;

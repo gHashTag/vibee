@@ -1,0 +1,211 @@
+{
+  "main": {
+    "id": "ec919e181613971d",
+    "type": "split",
+    "children": [
+      {
+        "id": "8cd9b3d0a549306b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d6d7f075dd752a4a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b0b7c727345b5a41",
+    "type": "split",
+    "children": [
+      {
+        "id": "fd11c8ec6f9e4629",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "70c109c337322987",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Файловый менеджер"
+            }
+          },
+          {
+            "id": "1592a225b258bc5e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Поиск"
+            }
+          },
+          {
+            "id": "c571c9ba38494b8c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Закладки"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "963be779a14ef308",
+    "type": "split",
+    "children": [
+      {
+        "id": "a40e93175f130f7e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2c6fc4bb4e688695",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "MILESTONE-4-FULL-RELEASE.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Обратные ссылки для MILESTONE-4-FULL-RELEASE"
+            }
+          },
+          {
+            "id": "55cfa7114f330032",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "MILESTONE-4-FULL-RELEASE.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Исходящие ссылки из MILESTONE-4-FULL-RELEASE"
+            }
+          },
+          {
+            "id": "86c813fa2008e1ae",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Теги"
+            }
+          },
+          {
+            "id": "0d7496c428a2f108",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "MILESTONE-4-FULL-RELEASE.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Структура MILESTONE-4-FULL-RELEASE"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "bases:Создать новую базу": false
+    }
+  },
+  "active": "d6d7f075dd752a4a",
+  "lastOpenFiles": [
+    "PLAN-RESTRUCTURE.md",
+    "NAVIGATION-PATTERN.md",
+    "ОТЧЕТ-УЛУЧШЕНИЯ-КУРСА.md",
+    "03-СОЗДАНИЕ-АРТИСТА/06-СЕРИЯ-КОНТЕНТА-АРТИСТА.md",
+    "02-МУЗЫКАЛЬНОЕ-ВИДЕО/03-КНОПКА-ВИДЕО-ИЗ-ТЕКСТА-ВСЕ-МОДЕЛИ.md.tmp.12733.1761036883291",
+    "ИСПРАВЛЕНИЕ-ЦЕН.md",
+    "ИСПРАВЛЕНИЕ-ЦЕН.md.tmp.12733.1761036860198",
+    "docs/НАВИГАЦИЯ-ДОБАВЛЕНА.md",
+    "docs",
+    "scripts/add-navigation.sh",
+    "scripts",
+    "ОГЛАВЛЕНИЕ.md",
+    "АНАЛИЗ-ПРОБЛЕМ.md",
+    "КАРТА-КУРСА.md",
+    "ПЛАН-УЛУЧШЕНИЙ.md",
+    "-1-ОСНОВЫ-НЕЙРОСЕТЕЙ/00-СТРУКТУРА-МОДУЛЯ.md",
+    "ВИЗУАЛЬНЫЙ-ПЛАН.md",
+    "README.md",
+    "MILESTONE-4-FULL-RELEASE.md",
+    "MILESTONE-3-AI-ARTIST.md",
+    "ИТОГИ-УЛУЧШЕНИЙ.md",
+    "MILESTONE-2-MUSIC-VIDEO.md",
+    "MILESTONE-1-EP-COVERS.md",
+    "00-ПРОГРАММА-AI-MUSIC-PRODUCTION.md",
+    "00-ВВЕДЕНИЕ/03-ТВОЯ-ПЕРВАЯ-ОБЛОЖКА.md",
+    "-1-ОСНОВЫ-НЕЙРОСЕТЕЙ/05-ГЛАВНЫЕ-5-МОДЕЛЕЙ.md",
+    "02-МУЗЫКАЛЬНОЕ-ВИДЕО/03-КНОПКА-ВИДЕО-ИЗ-ТЕКСТА-ВСЕ-МОДЕЛИ.md",
+    "02-МУЗЫКАЛЬНОЕ-ВИДЕО/03-КНОПКА-ВИДЕО-ИЗ-ТЕКСТА-УПРОЩЕННАЯ.md",
+    "00-ВВЕДЕНИЕ/00-НОВАЯ-СТРУКТУРА.md",
+    "00-QUICK-START-5-МИНУТ.md",
+    "00-QUICK-START-5-МИНУТ.md.tmp.24877.1760986213004",
+    "course-analytics.json",
+    "analyze-course.js",
+    "-1-ОСНОВЫ-НЕЙРОСЕТЕЙ/CALC-PRICES.js",
+    "-1-ОСНОВЫ-НЕЙРОСЕТЕЙ/05-ВСЕ-МОДЕЛИ-БОТА-ДЕТАЛЬНО.md",
+    "-1-ОСНОВЫ-НЕЙРОСЕТЕЙ"
+  ]
+}

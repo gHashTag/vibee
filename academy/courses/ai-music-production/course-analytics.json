@@ -1,0 +1,1791 @@
+{
+  "timestamp": "2025-10-20T18:42:03.920Z",
+  "total": {
+    "fileCount": 35,
+    "totalLines": 18058,
+    "totalWords": 36733,
+    "totalReadingTime": 205,
+    "totalCodeBlocks": 581,
+    "totalInlineCode": 73,
+    "totalImages": 0,
+    "totalExercises": 19,
+    "totalLinks": 18,
+    "avgComplexity": 2,
+    "avgWordsPerFile": 1050,
+    "avgReadingTime": 6
+  },
+  "modules": {
+    "-1-ОСНОВЫ-НЕЙРОСЕТЕЙ": {
+      "name": "-1-ОСНОВЫ-НЕЙРОСЕТЕЙ",
+      "files": [
+        {
+          "path": "/-1-ОСНОВЫ-НЕЙРОСЕТЕЙ/00-СТРУКТУРА-МОДУЛЯ.md",
+          "lines": 384,
+          "words": 1425,
+          "readingTime": 8,
+          "codeBlocks": 5,
+          "inlineCode": 8,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 61,
+          "complexityScore": 4,
+          "headings": {
+            "h1": 1,
+            "h2": 3,
+            "h3": 6
+          },
+          "links": 0,
+          "emojis": 45
+        },
+        {
+          "path": "/-1-ОСНОВЫ-НЕЙРОСЕТЕЙ/05-ВСЕ-МОДЕЛИ-БОТА-ДЕТАЛЬНО.md",
+          "lines": 1399,
+          "words": 4250,
+          "readingTime": 22,
+          "codeBlocks": 24,
+          "inlineCode": 41,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 89,
+          "complexityScore": 2,
+          "headings": {
+            "h1": 10,
+            "h2": 29,
+            "h3": 58
+          },
+          "links": 0,
+          "emojis": 193
+        }
+      ],
+      "stats": {
+        "fileCount": 2,
+        "totalLines": 1783,
+        "totalWords": 5675,
+        "totalReadingTime": 30,
+        "totalCodeBlocks": 29,
+        "totalInlineCode": 49,
+        "totalImages": 0,
+        "totalExercises": 0,
+        "totalLinks": 0,
+        "avgComplexity": 3,
+        "avgWordsPerFile": 2838,
+        "avgReadingTime": 15
+      }
+    },
+    "00-ВВЕДЕНИЕ": {
+      "name": "00-ВВЕДЕНИЕ",
+      "files": [
+        {
+          "path": "/00-ВВЕДЕНИЕ/01-ДОБРО-ПОЖАЛОВАТЬ.md",
+          "lines": 190,
+          "words": 968,
+          "readingTime": 5,
+          "codeBlocks": 0,
+          "inlineCode": 0,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 18,
+          "complexityScore": 2,
+          "headings": {
+            "h1": 1,
+            "h2": 8,
+            "h3": 20
+          },
+          "links": 0,
+          "emojis": 34
+        },
+        {
+          "path": "/00-ВВЕДЕНИЕ/02-ОБЗОР-ФУНКЦИЙ-БОТА.md",
+          "lines": 520,
+          "words": 1861,
+          "readingTime": 10,
+          "codeBlocks": 1,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 39,
+          "complexityScore": 2,
+          "headings": {
+            "h1": 1,
+            "h2": 17,
+            "h3": 75
+          },
+          "links": 0,
+          "emojis": 58
+        },
+        {
+          "path": "/00-ВВЕДЕНИЕ/03-РЕГИСТРАЦИЯ-И-ПОДПИСКА.md",
+          "lines": 455,
+          "words": 1409,
+          "readingTime": 8,
+          "codeBlocks": 3,
+          "inlineCode": 0,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 7,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 1,
+            "h2": 14,
+            "h3": 34
+          },
+          "links": 0,
+          "emojis": 51
+        },
+        {
+          "path": "/00-ВВЕДЕНИЕ/04-ФИЛОСОФИЯ-НЕЙРОПРОДЮСЕРА.md",
+          "lines": 530,
+          "words": 1504,
+          "readingTime": 8,
+          "codeBlocks": 4,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 63,
+          "complexityScore": 4,
+          "headings": {
+            "h1": 1,
+            "h2": 15,
+            "h3": 27
+          },
+          "links": 0,
+          "emojis": 22
+        }
+      ],
+      "stats": {
+        "fileCount": 4,
+        "totalLines": 1695,
+        "totalWords": 5742,
+        "totalReadingTime": 31,
+        "totalCodeBlocks": 8,
+        "totalInlineCode": -2,
+        "totalImages": 0,
+        "totalExercises": 0,
+        "totalLinks": 0,
+        "avgComplexity": 2,
+        "avgWordsPerFile": 1436,
+        "avgReadingTime": 8
+      }
+    },
+    "00-ПРОГРАММА-AI-MUSIC-PRODUCTION.md": {
+      "name": "00-ПРОГРАММА-AI-MUSIC-PRODUCTION.md",
+      "files": [
+        {
+          "path": "/00-ПРОГРАММА-AI-MUSIC-PRODUCTION.md",
+          "lines": 218,
+          "words": 452,
+          "readingTime": 3,
+          "codeBlocks": 9,
+          "inlineCode": 27,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 20,
+          "complexityScore": 4,
+          "headings": {
+            "h1": 1,
+            "h2": 8,
+            "h3": 17
+          },
+          "links": 0,
+          "emojis": 107
+        }
+      ],
+      "stats": {
+        "fileCount": 1,
+        "totalLines": 218,
+        "totalWords": 452,
+        "totalReadingTime": 3,
+        "totalCodeBlocks": 9,
+        "totalInlineCode": 27,
+        "totalImages": 0,
+        "totalExercises": 0,
+        "totalLinks": 0,
+        "avgComplexity": 4,
+        "avgWordsPerFile": 452,
+        "avgReadingTime": 3
+      }
+    },
+    "01-01-ЧТО-ДЕЛАЕТ-ХОРОШУЮ-ОБЛОЖКУ.md": {
+      "name": "01-01-ЧТО-ДЕЛАЕТ-ХОРОШУЮ-ОБЛОЖКУ.md",
+      "files": [
+        {
+          "path": "/01-01-ЧТО-ДЕЛАЕТ-ХОРОШУЮ-ОБЛОЖКУ.md",
+          "lines": 1,
+          "words": 0,
+          "readingTime": 0,
+          "codeBlocks": 0,
+          "inlineCode": 0,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 0,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 0,
+            "h2": 0,
+            "h3": 0
+          },
+          "links": 0,
+          "emojis": 0
+        }
+      ],
+      "stats": {
+        "fileCount": 1,
+        "totalLines": 1,
+        "totalWords": 0,
+        "totalReadingTime": 0,
+        "totalCodeBlocks": 0,
+        "totalInlineCode": 0,
+        "totalImages": 0,
+        "totalExercises": 0,
+        "totalLinks": 0,
+        "avgComplexity": 0,
+        "avgWordsPerFile": 0,
+        "avgReadingTime": 0
+      }
+    },
+    "01-СОЗДАНИЕ-ОБЛОЖКИ": {
+      "name": "01-СОЗДАНИЕ-ОБЛОЖКИ",
+      "files": [
+        {
+          "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/01-ЧТО-ДЕЛАЕТ-ХОРОШУЮ-ОБЛОЖКУ.md",
+          "lines": 271,
+          "words": 1028,
+          "readingTime": 6,
+          "codeBlocks": 4,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 8,
+          "complexityScore": 1,
+          "headings": {
+            "h1": 1,
+            "h2": 10,
+            "h3": 28
+          },
+          "links": 0,
+          "emojis": 9
+        },
+        {
+          "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/02-КНОПКА-ИИ-ФОТОШОП.md",
+          "lines": 564,
+          "words": 910,
+          "readingTime": 5,
+          "codeBlocks": 34,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 4,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 1,
+            "h2": 12,
+            "h3": 18
+          },
+          "links": 0,
+          "emojis": 37
+        },
+        {
+          "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/03-СТИЛИ-И-ПРОМПТЫ.md",
+          "lines": 684,
+          "words": 1275,
+          "readingTime": 7,
+          "codeBlocks": 40,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 1,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 1,
+            "h2": 12,
+            "h3": 27
+          },
+          "links": 0,
+          "emojis": 45
+        },
+        {
+          "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/04-СЕРИЯ-ОБЛОЖЕК-ДЛЯ-EP.md",
+          "lines": 474,
+          "words": 1062,
+          "readingTime": 6,
+          "codeBlocks": 18,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 5,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 1,
+            "h2": 15,
+            "h3": 28
+          },
+          "links": 0,
+          "emojis": 21
+        },
+        {
+          "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/05-УЛУЧШЕНИЕ-КАЧЕСТВА.md",
+          "lines": 579,
+          "words": 1158,
+          "readingTime": 6,
+          "codeBlocks": 19,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 12,
+          "complexityScore": 1,
+          "headings": {
+            "h1": 2,
+            "h2": 18,
+            "h3": 14
+          },
+          "links": 0,
+          "emojis": 45
+        },
+        {
+          "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/README.md",
+          "lines": 286,
+          "words": 954,
+          "readingTime": 5,
+          "codeBlocks": 2,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 2,
+          "technicalTerms": 5,
+          "complexityScore": 1,
+          "headings": {
+            "h1": 1,
+            "h2": 13,
+            "h3": 23
+          },
+          "links": 0,
+          "emojis": 29
+        }
+      ],
+      "stats": {
+        "fileCount": 6,
+        "totalLines": 2858,
+        "totalWords": 6387,
+        "totalReadingTime": 35,
+        "totalCodeBlocks": 117,
+        "totalInlineCode": -6,
+        "totalImages": 0,
+        "totalExercises": 2,
+        "totalLinks": 0,
+        "avgComplexity": 1,
+        "avgWordsPerFile": 1065,
+        "avgReadingTime": 6
+      }
+    },
+    "02-МУЗЫКАЛЬНОЕ-ВИДЕО": {
+      "name": "02-МУЗЫКАЛЬНОЕ-ВИДЕО",
+      "files": [
+        {
+          "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/01-КОНЦЕПЦИЯ-КЛИПА.md",
+          "lines": 207,
+          "words": 433,
+          "readingTime": 3,
+          "codeBlocks": 6,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 9,
+          "complexityScore": 2,
+          "headings": {
+            "h1": 1,
+            "h2": 5,
+            "h3": 5
+          },
+          "links": 0,
+          "emojis": 13
+        },
+        {
+          "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/02-ГЕНЕРАЦИЯ-МУЗЫКИ-SUNO.md",
+          "lines": 376,
+          "words": 602,
+          "readingTime": 4,
+          "codeBlocks": 17,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 42,
+          "complexityScore": 7,
+          "headings": {
+            "h1": 1,
+            "h2": 13,
+            "h3": 12
+          },
+          "links": 3,
+          "emojis": 16
+        },
+        {
+          "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/03-КНОПКА-ВИДЕО-ИЗ-ТЕКСТА.md",
+          "lines": 450,
+          "words": 722,
+          "readingTime": 4,
+          "codeBlocks": 18,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 4,
+          "complexityScore": 1,
+          "headings": {
+            "h1": 1,
+            "h2": 10,
+            "h3": 14
+          },
+          "links": 0,
+          "emojis": 33
+        },
+        {
+          "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/04-КНОПКА-ФОТО-В-ВИДЕО.md",
+          "lines": 534,
+          "words": 434,
+          "readingTime": 3,
+          "codeBlocks": 27,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 13,
+          "complexityScore": 3,
+          "headings": {
+            "h1": 1,
+            "h2": 10,
+            "h3": 18
+          },
+          "links": 0,
+          "emojis": 29
+        },
+        {
+          "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/05-КНОПКА-LIPSYNC.md",
+          "lines": 566,
+          "words": 497,
+          "readingTime": 3,
+          "codeBlocks": 22,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 33,
+          "complexityScore": 7,
+          "headings": {
+            "h1": 1,
+            "h2": 10,
+            "h3": 18
+          },
+          "links": 0,
+          "emojis": 28
+        },
+        {
+          "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/06-КНОПКА-AI-REELS.md",
+          "lines": 629,
+          "words": 458,
+          "readingTime": 3,
+          "codeBlocks": 29,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 9,
+          "complexityScore": 2,
+          "headings": {
+            "h1": 1,
+            "h2": 12,
+            "h3": 21
+          },
+          "links": 0,
+          "emojis": 15
+        },
+        {
+          "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/07-КНОПКА-МОРФИНГ.md",
+          "lines": 877,
+          "words": 471,
+          "readingTime": 3,
+          "codeBlocks": 37,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 10,
+          "complexityScore": 2,
+          "headings": {
+            "h1": 1,
+            "h2": 13,
+            "h3": 35
+          },
+          "links": 0,
+          "emojis": 26
+        },
+        {
+          "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/08-МОНТАЖ-ФИНАЛЬНОГО-КЛИПА.md",
+          "lines": 1016,
+          "words": 293,
+          "readingTime": 2,
+          "codeBlocks": 39,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 19,
+          "complexityScore": 6,
+          "headings": {
+            "h1": 1,
+            "h2": 9,
+            "h3": 24
+          },
+          "links": 2,
+          "emojis": 9
+        },
+        {
+          "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/README.md",
+          "lines": 368,
+          "words": 917,
+          "readingTime": 5,
+          "codeBlocks": 10,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 46,
+          "complexityScore": 5,
+          "headings": {
+            "h1": 1,
+            "h2": 9,
+            "h3": 18
+          },
+          "links": 0,
+          "emojis": 27
+        }
+      ],
+      "stats": {
+        "fileCount": 9,
+        "totalLines": 5023,
+        "totalWords": 4827,
+        "totalReadingTime": 30,
+        "totalCodeBlocks": 205,
+        "totalInlineCode": -9,
+        "totalImages": 0,
+        "totalExercises": 0,
+        "totalLinks": 5,
+        "avgComplexity": 4,
+        "avgWordsPerFile": 536,
+        "avgReadingTime": 3
+      }
+    },
+    "03-СОЗДАНИЕ-АРТИСТА": {
+      "name": "03-СОЗДАНИЕ-АРТИСТА",
+      "files": [
+        {
+          "path": "/03-СОЗДАНИЕ-АРТИСТА/01-КОНЦЕПЦИЯ-АРТИСТА.md",
+          "lines": 288,
+          "words": 622,
+          "readingTime": 4,
+          "codeBlocks": 6,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 3,
+          "technicalTerms": 2,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 1,
+            "h2": 9,
+            "h3": 10
+          },
+          "links": 0,
+          "emojis": 4
+        },
+        {
+          "path": "/03-СОЗДАНИЕ-АРТИСТА/02-КНОПКА-ЦИФРОВОЕ-ТЕЛО.md",
+          "lines": 521,
+          "words": 756,
+          "readingTime": 4,
+          "codeBlocks": 32,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 3,
+          "technicalTerms": 1,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 1,
+            "h2": 11,
+            "h3": 15
+          },
+          "links": 0,
+          "emojis": 25
+        },
+        {
+          "path": "/03-СОЗДАНИЕ-АРТИСТА/03-КНОПКА-ИИ-ГЕРОИ.md",
+          "lines": 631,
+          "words": 848,
+          "readingTime": 5,
+          "codeBlocks": 32,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 3,
+          "technicalTerms": 1,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 1,
+            "h2": 12,
+            "h3": 19
+          },
+          "links": 0,
+          "emojis": 7
+        },
+        {
+          "path": "/03-СОЗДАНИЕ-АРТИСТА/04-КНОПКА-ТЕКСТ-В-ГОЛОС.md",
+          "lines": 572,
+          "words": 927,
+          "readingTime": 5,
+          "codeBlocks": 26,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 4,
+          "technicalTerms": 12,
+          "complexityScore": 1,
+          "headings": {
+            "h1": 1,
+            "h2": 12,
+            "h3": 21
+          },
+          "links": 0,
+          "emojis": 24
+        },
+        {
+          "path": "/03-СОЗДАНИЕ-АРТИСТА/05-КНОПКА-НЕЙРОФОТО.md",
+          "lines": 616,
+          "words": 852,
+          "readingTime": 5,
+          "codeBlocks": 36,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 4,
+          "technicalTerms": 0,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 1,
+            "h2": 11,
+            "h3": 22
+          },
+          "links": 0,
+          "emojis": 36
+        }
+      ],
+      "stats": {
+        "fileCount": 5,
+        "totalLines": 2628,
+        "totalWords": 4005,
+        "totalReadingTime": 23,
+        "totalCodeBlocks": 132,
+        "totalInlineCode": -5,
+        "totalImages": 0,
+        "totalExercises": 17,
+        "totalLinks": 0,
+        "avgComplexity": 0,
+        "avgWordsPerFile": 801,
+        "avgReadingTime": 5
+      }
+    },
+    "03-СОЗДА��ИЕ-АРТИСТА": {
+      "name": "03-СОЗДА��ИЕ-АРТИСТА",
+      "files": [
+        {
+          "path": "/03-СОЗДА��ИЕ-АРТИСТА/06-СЕРИЯ-КОНТЕНТА-АРТИСТА.md",
+          "lines": 997,
+          "words": 1143,
+          "readingTime": 6,
+          "codeBlocks": 37,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 5,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 3,
+            "h2": 25,
+            "h3": 29
+          },
+          "links": 0,
+          "emojis": 43
+        }
+      ],
+      "stats": {
+        "fileCount": 1,
+        "totalLines": 997,
+        "totalWords": 1143,
+        "totalReadingTime": 6,
+        "totalCodeBlocks": 37,
+        "totalInlineCode": -1,
+        "totalImages": 0,
+        "totalExercises": 0,
+        "totalLinks": 0,
+        "avgComplexity": 0,
+        "avgWordsPerFile": 1143,
+        "avgReadingTime": 6
+      }
+    },
+    "04-ДИСТРИБУЦИЯ": {
+      "name": "04-ДИСТРИБУЦИЯ",
+      "files": [
+        {
+          "path": "/04-ДИСТРИБУЦИЯ/01-ПОДГОТОВКА-К-РЕЛИЗУ.md",
+          "lines": 299,
+          "words": 1003,
+          "readingTime": 6,
+          "codeBlocks": 3,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 19,
+          "complexityScore": 2,
+          "headings": {
+            "h1": 1,
+            "h2": 6,
+            "h3": 16
+          },
+          "links": 8,
+          "emojis": 1
+        },
+        {
+          "path": "/04-ДИСТРИБУЦИЯ/02-ДИСТРИБУЦИЯ-SPOTIFY.md",
+          "lines": 476,
+          "words": 1498,
+          "readingTime": 8,
+          "codeBlocks": 2,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 4,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 1,
+            "h2": 9,
+            "h3": 21
+          },
+          "links": 3,
+          "emojis": 5
+        },
+        {
+          "path": "/04-ДИСТРИБУЦИЯ/03-ПУБЛИКАЦИЯ-YOUTUBE.md",
+          "lines": 618,
+          "words": 1534,
+          "readingTime": 8,
+          "codeBlocks": 15,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 35,
+          "complexityScore": 2,
+          "headings": {
+            "h1": 1,
+            "h2": 9,
+            "h3": 25
+          },
+          "links": 1,
+          "emojis": 25
+        },
+        {
+          "path": "/04-ДИСТРИБУЦИЯ/04-INSTAGRAM-TIKTOK-ПРОДВИЖЕНИЕ.md",
+          "lines": 637,
+          "words": 1837,
+          "readingTime": 10,
+          "codeBlocks": 11,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 19,
+          "complexityScore": 1,
+          "headings": {
+            "h1": 1,
+            "h2": 11,
+            "h3": 30
+          },
+          "links": 1,
+          "emojis": 15
+        },
+        {
+          "path": "/04-ДИСТРИБУЦИЯ/05-МОНЕТИЗАЦИЯ.md",
+          "lines": 731,
+          "words": 2405,
+          "readingTime": 13,
+          "codeBlocks": 11,
+          "inlineCode": -1,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 12,
+          "complexityScore": 0,
+          "headings": {
+            "h1": 1,
+            "h2": 13,
+            "h3": 31
+          },
+          "links": 0,
+          "emojis": 0
+        }
+      ],
+      "stats": {
+        "fileCount": 5,
+        "totalLines": 2761,
+        "totalWords": 8277,
+        "totalReadingTime": 45,
+        "totalCodeBlocks": 42,
+        "totalInlineCode": -5,
+        "totalImages": 0,
+        "totalExercises": 0,
+        "totalLinks": 13,
+        "avgComplexity": 1,
+        "avgWordsPerFile": 1655,
+        "avgReadingTime": 9
+      }
+    },
+    "README.md": {
+      "name": "README.md",
+      "files": [
+        {
+          "path": "/README.md",
+          "lines": 94,
+          "words": 225,
+          "readingTime": 2,
+          "codeBlocks": 2,
+          "inlineCode": 25,
+          "images": 0,
+          "exercises": 0,
+          "technicalTerms": 14,
+          "complexityScore": 6,
+          "headings": {
+            "h1": 1,
+            "h2": 5,
+            "h3": 3
+          },
+          "links": 0,
+          "emojis": 31
+        }
+      ],
+      "stats": {
+        "fileCount": 1,
+        "totalLines": 94,
+        "totalWords": 225,
+        "totalReadingTime": 2,
+        "totalCodeBlocks": 2,
+        "totalInlineCode": 25,
+        "totalImages": 0,
+        "totalExercises": 0,
+        "totalLinks": 0,
+        "avgComplexity": 6,
+        "avgWordsPerFile": 225,
+        "avgReadingTime": 2
+      }
+    }
+  },
+  "contentBalance": {
+    "theoryWords": 968,
+    "practiceWords": 35765,
+    "theoryPercent": 3,
+    "practicePercent": 97,
+    "balance": "Practice-heavy"
+  },
+  "missing": [
+    {
+      "file": "/-1-ОСНОВЫ-НЕЙРОСЕТЕЙ/00-СТРУКТУРА-МОДУЛЯ.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/-1-ОСНОВЫ-НЕЙРОСЕТЕЙ/05-ВСЕ-МОДЕЛИ-БОТА-ДЕТАЛЬНО.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/00-ВВЕДЕНИЕ/01-ДОБРО-ПОЖАЛОВАТЬ.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/00-ВВЕДЕНИЕ/02-ОБЗОР-ФУНКЦИЙ-БОТА.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/00-ВВЕДЕНИЕ/03-РЕГИСТРАЦИЯ-И-ПОДПИСКА.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/00-ВВЕДЕНИЕ/04-ФИЛОСОФИЯ-НЕЙРОПРОДЮСЕРА.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/00-ПРОГРАММА-AI-MUSIC-PRODUCTION.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/01-01-ЧТО-ДЕЛАЕТ-ХОРОШУЮ-ОБЛОЖКУ.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises",
+        "Very short content (<100 words)",
+        "No H2 headings (poor structure)"
+      ]
+    },
+    {
+      "file": "/01-СОЗДАНИЕ-ОБЛОЖКИ/01-ЧТО-ДЕЛАЕТ-ХОРОШУЮ-ОБЛОЖКУ.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/01-СОЗДАНИЕ-ОБЛОЖКИ/02-КНОПКА-ИИ-ФОТОШОП.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/01-СОЗДАНИЕ-ОБЛОЖКИ/03-СТИЛИ-И-ПРОМПТЫ.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/01-СОЗДАНИЕ-ОБЛОЖКИ/04-СЕРИЯ-ОБЛОЖЕК-ДЛЯ-EP.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/01-СОЗДАНИЕ-ОБЛОЖКИ/05-УЛУЧШЕНИЕ-КАЧЕСТВА.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/01-СОЗДАНИЕ-ОБЛОЖКИ/README.md",
+      "issues": [
+        "No images/screenshots"
+      ]
+    },
+    {
+      "file": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/01-КОНЦЕПЦИЯ-КЛИПА.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/02-ГЕНЕРАЦИЯ-МУЗЫКИ-SUNO.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/03-КНОПКА-ВИДЕО-ИЗ-ТЕКСТА.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/04-КНОПКА-ФОТО-В-ВИДЕО.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/05-КНОПКА-LIPSYNC.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/06-КНОПКА-AI-REELS.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/07-КНОПКА-МОРФИНГ.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/08-МОНТАЖ-ФИНАЛЬНОГО-КЛИПА.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/README.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/03-СОЗДАНИЕ-АРТИСТА/01-КОНЦЕПЦИЯ-АРТИСТА.md",
+      "issues": [
+        "No images/screenshots"
+      ]
+    },
+    {
+      "file": "/03-СОЗДАНИЕ-АРТИСТА/02-КНОПКА-ЦИФРОВОЕ-ТЕЛО.md",
+      "issues": [
+        "No images/screenshots"
+      ]
+    },
+    {
+      "file": "/03-СОЗДАНИЕ-АРТИСТА/03-КНОПКА-ИИ-ГЕРОИ.md",
+      "issues": [
+        "No images/screenshots"
+      ]
+    },
+    {
+      "file": "/03-СОЗДАНИЕ-АРТИСТА/04-КНОПКА-ТЕКСТ-В-ГОЛОС.md",
+      "issues": [
+        "No images/screenshots"
+      ]
+    },
+    {
+      "file": "/03-СОЗДАНИЕ-АРТИСТА/05-КНОПКА-НЕЙРОФОТО.md",
+      "issues": [
+        "No images/screenshots"
+      ]
+    },
+    {
+      "file": "/03-СОЗДА��ИЕ-АРТИСТА/06-СЕРИЯ-КОНТЕНТА-АРТИСТА.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/04-ДИСТРИБУЦИЯ/01-ПОДГОТОВКА-К-РЕЛИЗУ.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/04-ДИСТРИБУЦИЯ/02-ДИСТРИБУЦИЯ-SPOTIFY.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/04-ДИСТРИБУЦИЯ/03-ПУБЛИКАЦИЯ-YOUTUBE.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/04-ДИСТРИБУЦИЯ/04-INSTAGRAM-TIKTOK-ПРОДВИЖЕНИЕ.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/04-ДИСТРИБУЦИЯ/05-МОНЕТИЗАЦИЯ.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    },
+    {
+      "file": "/README.md",
+      "issues": [
+        "No images/screenshots",
+        "No practical exercises"
+      ]
+    }
+  ],
+  "fileAnalyses": [
+    {
+      "path": "/-1-ОСНОВЫ-НЕЙРОСЕТЕЙ/00-СТРУКТУРА-МОДУЛЯ.md",
+      "lines": 384,
+      "words": 1425,
+      "readingTime": 8,
+      "codeBlocks": 5,
+      "inlineCode": 8,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 61,
+      "complexityScore": 4,
+      "headings": {
+        "h1": 1,
+        "h2": 3,
+        "h3": 6
+      },
+      "links": 0,
+      "emojis": 45
+    },
+    {
+      "path": "/-1-ОСНОВЫ-НЕЙРОСЕТЕЙ/05-ВСЕ-МОДЕЛИ-БОТА-ДЕТАЛЬНО.md",
+      "lines": 1399,
+      "words": 4250,
+      "readingTime": 22,
+      "codeBlocks": 24,
+      "inlineCode": 41,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 89,
+      "complexityScore": 2,
+      "headings": {
+        "h1": 10,
+        "h2": 29,
+        "h3": 58
+      },
+      "links": 0,
+      "emojis": 193
+    },
+    {
+      "path": "/00-ВВЕДЕНИЕ/01-ДОБРО-ПОЖАЛОВАТЬ.md",
+      "lines": 190,
+      "words": 968,
+      "readingTime": 5,
+      "codeBlocks": 0,
+      "inlineCode": 0,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 18,
+      "complexityScore": 2,
+      "headings": {
+        "h1": 1,
+        "h2": 8,
+        "h3": 20
+      },
+      "links": 0,
+      "emojis": 34
+    },
+    {
+      "path": "/00-ВВЕДЕНИЕ/02-ОБЗОР-ФУНКЦИЙ-БОТА.md",
+      "lines": 520,
+      "words": 1861,
+      "readingTime": 10,
+      "codeBlocks": 1,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 39,
+      "complexityScore": 2,
+      "headings": {
+        "h1": 1,
+        "h2": 17,
+        "h3": 75
+      },
+      "links": 0,
+      "emojis": 58
+    },
+    {
+      "path": "/00-ВВЕДЕНИЕ/03-РЕГИСТРАЦИЯ-И-ПОДПИСКА.md",
+      "lines": 455,
+      "words": 1409,
+      "readingTime": 8,
+      "codeBlocks": 3,
+      "inlineCode": 0,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 7,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 1,
+        "h2": 14,
+        "h3": 34
+      },
+      "links": 0,
+      "emojis": 51
+    },
+    {
+      "path": "/00-ВВЕДЕНИЕ/04-ФИЛОСОФИЯ-НЕЙРОПРОДЮСЕРА.md",
+      "lines": 530,
+      "words": 1504,
+      "readingTime": 8,
+      "codeBlocks": 4,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 63,
+      "complexityScore": 4,
+      "headings": {
+        "h1": 1,
+        "h2": 15,
+        "h3": 27
+      },
+      "links": 0,
+      "emojis": 22
+    },
+    {
+      "path": "/00-ПРОГРАММА-AI-MUSIC-PRODUCTION.md",
+      "lines": 218,
+      "words": 452,
+      "readingTime": 3,
+      "codeBlocks": 9,
+      "inlineCode": 27,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 20,
+      "complexityScore": 4,
+      "headings": {
+        "h1": 1,
+        "h2": 8,
+        "h3": 17
+      },
+      "links": 0,
+      "emojis": 107
+    },
+    {
+      "path": "/01-01-ЧТО-ДЕЛАЕТ-ХОРОШУЮ-ОБЛОЖКУ.md",
+      "lines": 1,
+      "words": 0,
+      "readingTime": 0,
+      "codeBlocks": 0,
+      "inlineCode": 0,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 0,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0
+      },
+      "links": 0,
+      "emojis": 0
+    },
+    {
+      "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/01-ЧТО-ДЕЛАЕТ-ХОРОШУЮ-ОБЛОЖКУ.md",
+      "lines": 271,
+      "words": 1028,
+      "readingTime": 6,
+      "codeBlocks": 4,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 8,
+      "complexityScore": 1,
+      "headings": {
+        "h1": 1,
+        "h2": 10,
+        "h3": 28
+      },
+      "links": 0,
+      "emojis": 9
+    },
+    {
+      "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/02-КНОПКА-ИИ-ФОТОШОП.md",
+      "lines": 564,
+      "words": 910,
+      "readingTime": 5,
+      "codeBlocks": 34,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 4,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 1,
+        "h2": 12,
+        "h3": 18
+      },
+      "links": 0,
+      "emojis": 37
+    },
+    {
+      "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/03-СТИЛИ-И-ПРОМПТЫ.md",
+      "lines": 684,
+      "words": 1275,
+      "readingTime": 7,
+      "codeBlocks": 40,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 1,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 1,
+        "h2": 12,
+        "h3": 27
+      },
+      "links": 0,
+      "emojis": 45
+    },
+    {
+      "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/04-СЕРИЯ-ОБЛОЖЕК-ДЛЯ-EP.md",
+      "lines": 474,
+      "words": 1062,
+      "readingTime": 6,
+      "codeBlocks": 18,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 5,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 1,
+        "h2": 15,
+        "h3": 28
+      },
+      "links": 0,
+      "emojis": 21
+    },
+    {
+      "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/05-УЛУЧШЕНИЕ-КАЧЕСТВА.md",
+      "lines": 579,
+      "words": 1158,
+      "readingTime": 6,
+      "codeBlocks": 19,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 12,
+      "complexityScore": 1,
+      "headings": {
+        "h1": 2,
+        "h2": 18,
+        "h3": 14
+      },
+      "links": 0,
+      "emojis": 45
+    },
+    {
+      "path": "/01-СОЗДАНИЕ-ОБЛОЖКИ/README.md",
+      "lines": 286,
+      "words": 954,
+      "readingTime": 5,
+      "codeBlocks": 2,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 2,
+      "technicalTerms": 5,
+      "complexityScore": 1,
+      "headings": {
+        "h1": 1,
+        "h2": 13,
+        "h3": 23
+      },
+      "links": 0,
+      "emojis": 29
+    },
+    {
+      "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/01-КОНЦЕПЦИЯ-КЛИПА.md",
+      "lines": 207,
+      "words": 433,
+      "readingTime": 3,
+      "codeBlocks": 6,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 9,
+      "complexityScore": 2,
+      "headings": {
+        "h1": 1,
+        "h2": 5,
+        "h3": 5
+      },
+      "links": 0,
+      "emojis": 13
+    },
+    {
+      "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/02-ГЕНЕРАЦИЯ-МУЗЫКИ-SUNO.md",
+      "lines": 376,
+      "words": 602,
+      "readingTime": 4,
+      "codeBlocks": 17,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 42,
+      "complexityScore": 7,
+      "headings": {
+        "h1": 1,
+        "h2": 13,
+        "h3": 12
+      },
+      "links": 3,
+      "emojis": 16
+    },
+    {
+      "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/03-КНОПКА-ВИДЕО-ИЗ-ТЕКСТА.md",
+      "lines": 450,
+      "words": 722,
+      "readingTime": 4,
+      "codeBlocks": 18,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 4,
+      "complexityScore": 1,
+      "headings": {
+        "h1": 1,
+        "h2": 10,
+        "h3": 14
+      },
+      "links": 0,
+      "emojis": 33
+    },
+    {
+      "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/04-КНОПКА-ФОТО-В-ВИДЕО.md",
+      "lines": 534,
+      "words": 434,
+      "readingTime": 3,
+      "codeBlocks": 27,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 13,
+      "complexityScore": 3,
+      "headings": {
+        "h1": 1,
+        "h2": 10,
+        "h3": 18
+      },
+      "links": 0,
+      "emojis": 29
+    },
+    {
+      "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/05-КНОПКА-LIPSYNC.md",
+      "lines": 566,
+      "words": 497,
+      "readingTime": 3,
+      "codeBlocks": 22,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 33,
+      "complexityScore": 7,
+      "headings": {
+        "h1": 1,
+        "h2": 10,
+        "h3": 18
+      },
+      "links": 0,
+      "emojis": 28
+    },
+    {
+      "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/06-КНОПКА-AI-REELS.md",
+      "lines": 629,
+      "words": 458,
+      "readingTime": 3,
+      "codeBlocks": 29,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 9,
+      "complexityScore": 2,
+      "headings": {
+        "h1": 1,
+        "h2": 12,
+        "h3": 21
+      },
+      "links": 0,
+      "emojis": 15
+    },
+    {
+      "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/07-КНОПКА-МОРФИНГ.md",
+      "lines": 877,
+      "words": 471,
+      "readingTime": 3,
+      "codeBlocks": 37,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 10,
+      "complexityScore": 2,
+      "headings": {
+        "h1": 1,
+        "h2": 13,
+        "h3": 35
+      },
+      "links": 0,
+      "emojis": 26
+    },
+    {
+      "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/08-МОНТАЖ-ФИНАЛЬНОГО-КЛИПА.md",
+      "lines": 1016,
+      "words": 293,
+      "readingTime": 2,
+      "codeBlocks": 39,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 19,
+      "complexityScore": 6,
+      "headings": {
+        "h1": 1,
+        "h2": 9,
+        "h3": 24
+      },
+      "links": 2,
+      "emojis": 9
+    },
+    {
+      "path": "/02-МУЗЫКАЛЬНОЕ-ВИДЕО/README.md",
+      "lines": 368,
+      "words": 917,
+      "readingTime": 5,
+      "codeBlocks": 10,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 46,
+      "complexityScore": 5,
+      "headings": {
+        "h1": 1,
+        "h2": 9,
+        "h3": 18
+      },
+      "links": 0,
+      "emojis": 27
+    },
+    {
+      "path": "/03-СОЗДАНИЕ-АРТИСТА/01-КОНЦЕПЦИЯ-АРТИСТА.md",
+      "lines": 288,
+      "words": 622,
+      "readingTime": 4,
+      "codeBlocks": 6,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 3,
+      "technicalTerms": 2,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 1,
+        "h2": 9,
+        "h3": 10
+      },
+      "links": 0,
+      "emojis": 4
+    },
+    {
+      "path": "/03-СОЗДАНИЕ-АРТИСТА/02-КНОПКА-ЦИФРОВОЕ-ТЕЛО.md",
+      "lines": 521,
+      "words": 756,
+      "readingTime": 4,
+      "codeBlocks": 32,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 3,
+      "technicalTerms": 1,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 1,
+        "h2": 11,
+        "h3": 15
+      },
+      "links": 0,
+      "emojis": 25
+    },
+    {
+      "path": "/03-СОЗДАНИЕ-АРТИСТА/03-КНОПКА-ИИ-ГЕРОИ.md",
+      "lines": 631,
+      "words": 848,
+      "readingTime": 5,
+      "codeBlocks": 32,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 3,
+      "technicalTerms": 1,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 1,
+        "h2": 12,
+        "h3": 19
+      },
+      "links": 0,
+      "emojis": 7
+    },
+    {
+      "path": "/03-СОЗДАНИЕ-АРТИСТА/04-КНОПКА-ТЕКСТ-В-ГОЛОС.md",
+      "lines": 572,
+      "words": 927,
+      "readingTime": 5,
+      "codeBlocks": 26,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 4,
+      "technicalTerms": 12,
+      "complexityScore": 1,
+      "headings": {
+        "h1": 1,
+        "h2": 12,
+        "h3": 21
+      },
+      "links": 0,
+      "emojis": 24
+    },
+    {
+      "path": "/03-СОЗДАНИЕ-АРТИСТА/05-КНОПКА-НЕЙРОФОТО.md",
+      "lines": 616,
+      "words": 852,
+      "readingTime": 5,
+      "codeBlocks": 36,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 4,
+      "technicalTerms": 0,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 1,
+        "h2": 11,
+        "h3": 22
+      },
+      "links": 0,
+      "emojis": 36
+    },
+    {
+      "path": "/03-СОЗДА��ИЕ-АРТИСТА/06-СЕРИЯ-КОНТЕНТА-АРТИСТА.md",
+      "lines": 997,
+      "words": 1143,
+      "readingTime": 6,
+      "codeBlocks": 37,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 5,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 3,
+        "h2": 25,
+        "h3": 29
+      },
+      "links": 0,
+      "emojis": 43
+    },
+    {
+      "path": "/04-ДИСТРИБУЦИЯ/01-ПОДГОТОВКА-К-РЕЛИЗУ.md",
+      "lines": 299,
+      "words": 1003,
+      "readingTime": 6,
+      "codeBlocks": 3,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 19,
+      "complexityScore": 2,
+      "headings": {
+        "h1": 1,
+        "h2": 6,
+        "h3": 16
+      },
+      "links": 8,
+      "emojis": 1
+    },
+    {
+      "path": "/04-ДИСТРИБУЦИЯ/02-ДИСТРИБУЦИЯ-SPOTIFY.md",
+      "lines": 476,
+      "words": 1498,
+      "readingTime": 8,
+      "codeBlocks": 2,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 4,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 1,
+        "h2": 9,
+        "h3": 21
+      },
+      "links": 3,
+      "emojis": 5
+    },
+    {
+      "path": "/04-ДИСТРИБУЦИЯ/03-ПУБЛИКАЦИЯ-YOUTUBE.md",
+      "lines": 618,
+      "words": 1534,
+      "readingTime": 8,
+      "codeBlocks": 15,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 35,
+      "complexityScore": 2,
+      "headings": {
+        "h1": 1,
+        "h2": 9,
+        "h3": 25
+      },
+      "links": 1,
+      "emojis": 25
+    },
+    {
+      "path": "/04-ДИСТРИБУЦИЯ/04-INSTAGRAM-TIKTOK-ПРОДВИЖЕНИЕ.md",
+      "lines": 637,
+      "words": 1837,
+      "readingTime": 10,
+      "codeBlocks": 11,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 19,
+      "complexityScore": 1,
+      "headings": {
+        "h1": 1,
+        "h2": 11,
+        "h3": 30
+      },
+      "links": 1,
+      "emojis": 15
+    },
+    {
+      "path": "/04-ДИСТРИБУЦИЯ/05-МОНЕТИЗАЦИЯ.md",
+      "lines": 731,
+      "words": 2405,
+      "readingTime": 13,
+      "codeBlocks": 11,
+      "inlineCode": -1,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 12,
+      "complexityScore": 0,
+      "headings": {
+        "h1": 1,
+        "h2": 13,
+        "h3": 31
+      },
+      "links": 0,
+      "emojis": 0
+    },
+    {
+      "path": "/README.md",
+      "lines": 94,
+      "words": 225,
+      "readingTime": 2,
+      "codeBlocks": 2,
+      "inlineCode": 25,
+      "images": 0,
+      "exercises": 0,
+      "technicalTerms": 14,
+      "complexityScore": 6,
+      "headings": {
+        "h1": 1,
+        "h2": 5,
+        "h3": 3
+      },
+      "links": 0,
+      "emojis": 31
+    }
+  ]
+}

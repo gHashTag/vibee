@@ -253,16 +253,8 @@ ${prompt.slice(0, 150)}${prompt.length > 150 ? '...' : ''}
 
 🎨 **Детали генерации**
 ├ 🎭 Персонализация: **${FAL_LORA_TRIGGER}**
-├ 🤖 Модель: **Flux LoRA 🎭**
 ├ 📐 Размер: **768×1365 (9:16)**
-├ ⏱ Время: **${Math.round(generationTime / 1000)}с**
-└ 🔗 Provider: **Fal.ai**
-
-━━━━━━━━━━━━━━━━━━━━
-🔍 **Техническая информация**
-LoRA: \`${FAL_LORA_TRIGGER}\`
-Model ID: \`fal-ai/flux-lora\`
-Сгенерировано: ${new Date().toLocaleString('ru-RU')}
+└ ⏱ Время: **${Math.round(generationTime / 1000)}с**
 
 _Создано с помощью AI • Vibee_`;
 

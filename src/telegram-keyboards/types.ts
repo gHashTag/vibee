@@ -127,6 +127,12 @@ export type KeyboardPattern =
   | 'pagination'          // Previous/Next navigation
   | 'settings'            // Settings menu
   | 'back'                // Just a back button
+  | 'training_quality'    // Training quality selection
+  | 'training_steps'      // Training steps selection
+  | 'training_start'      // Training confirmation
+  | 'content_hooks'       // Content creation: Hook selection
+  | 'content_voices'      // Content creation: Voice selection
+  | 'content_final'       // Content creation: Final menu
   | 'custom';             // Custom layout
 
 /**

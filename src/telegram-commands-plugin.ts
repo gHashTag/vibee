@@ -38,18 +38,58 @@ class TelegramCommandsService extends Service {
   async initialize(runtime: IAgentRuntime): Promise<void> {
     logger.info('🎯 TelegramCommandsService initializing...');
 
+    // Ждём Telegram Service чтобы установить команды бота
+    const maxAttempts = 20;
+    let telegramService = null;
+
+    for (let i = 0; i < maxAttempts; i++) {
+      telegramService = runtime.getService('telegram');
+      if (telegramService && telegramService.bot) {
+        logger.info('[TelegramCommandsService] ✅ Found TelegramService with bot');
+        break;
+      }
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+
+    // Устанавливаем команды бота
+    if (telegramService && telegramService.bot) {
+      try {
+        await telegramService.bot.telegram.setMyCommands([
+          { command: 'start', description: '🚀 Начать работу с ботом' },
+          { command: 'menu', description: '📋 Главное меню' },
+          { command: 'help', description: '❓ Помощь и справка' },
+          { command: 'quickstart', description: '⚡ Быстрый старт в разработке' },
+          { command: 'tools', description: '🔧 Топ инструменты 2025' },
+          { command: 'ai', description: '🤖 AI в разработке' },
+          { command: 'tts', description: '🎤 Создать голосовое' },
+          { command: 'news', description: '📰 Проверить новости сейчас' },
+          { command: 'chat', description: '💬 Чат VibeMates' },
+          { command: 'mate', description: '🤖 Выбрать VibeMate' },
+        ]);
+        logger.info('✅ Bot commands set successfully');
+      } catch (error) {
+        logger.error('❌ Failed to set bot commands:', error);
+      }
+    }
+
     // Слушаем событие /start от Telegram
     runtime.on('TELEGRAM_SLASH_START', async (data: any) => {
       logger.info('🚀 TELEGRAM_SLASH_START event received!', data);
       await this.handleStartCommand(runtime, data);
     });
 
-    // Слушаем входящие сообщения для /menu и /help
+    // Слушаем входящие сообщения для /menu, /help, /train
     runtime.on('TELEGRAM_MESSAGE_RECEIVED', async (data: any) => {
+      console.log('🔥 TELEGRAM_MESSAGE_RECEIVED CALLED! data =', data);
       const message = data.memory || data.message || data;
-      if (!message?.content) return;
+      console.log('🔥 message =', message);
+      if (!message?.content) {
+        console.log('❌ No content in message');
+        return;
+      }
 
       const text = (message.content.text || '').trim().toLowerCase();
+      console.log('🔥 Message text =', text);
       logger.info(`📨 Telegram message: "${text}"`);
 
       if (text === '/menu' || text === 'menu' || text === 'меню') {
@@ -58,6 +98,30 @@ class TelegramCommandsService extends Service {
       } else if (text === '/help' || text === 'help' || text === 'помощь') {
         logger.info('✅ /help command');
         await this.handleHelpCommand(runtime, message);
+      } else if (text === 'покажи новости' || text === 'новости' || text === 'пришли новости') {
+        logger.info('✅ Show news command');
+        await this.handleShowNewsCommand(runtime, message);
+      } else if (text.startsWith('/quickstart') || text === 'быстрый старт' || text === 'quickstart') {
+        logger.info('✅ /quickstart command');
+        await this.handleQuickstartCommand(runtime, message);
+      } else if (text.startsWith('/tools') || text === 'инструменты' || text === 'tools' || text === 'топ инструменты') {
+        logger.info('✅ /tools command');
+        await this.handleToolsCommand(runtime, message);
+      } else if (text.startsWith('/ai') || text === 'ai' || text.includes('искусственный интеллект') || text.includes('ai в разработке')) {
+        logger.info('✅ /ai command');
+        await this.handleAICommand(runtime, message);
+      } else if (text.startsWith('/tts') || text === 'tts' || text === 'голосовое' || text.startsWith('озвучь')) {
+        logger.info('✅ /tts command');
+        await this.handleTTSCommand(runtime, message);
+      } else if (text.startsWith('/news') || text === 'news' || text === 'новости' || text === 'проверить новости') {
+        logger.info('✅ /news command');
+        await this.handleNewsCommand(runtime, message);
+      } else if (text.startsWith('/chat') || text === 'chat' || text === 'чат' || text === 'чат вибимейтс') {
+        logger.info('✅ /chat command');
+        await this.handleChatCommand(runtime, message);
+      } else if (text.startsWith('/mate') || text === 'mate' || text === 'вибимейт' || text === 'выбрать учителя') {
+        logger.info('✅ /mate command');
+        await this.handleMateCommand(runtime, message);
       }
     });
 
@@ -87,30 +151,511 @@ class TelegramCommandsService extends Service {
 • Делиться best practices
 • Рекомендовать инструменты
 
-💡 **Как со мной работать:**
-Просто пиши свои вопросы, и я буду отвечать с интерактивными кнопками для удобства!
+💡 **Выбери раздел:**`;
 
-Попробуй команды:
-/menu - главное меню
-/help - помощь`;
+    const buttons = {
+      inline_keyboard: [
+        [{ text: '🎨 Обучение модели', callback_data: 'menu_training' }],
+        [{ text: '📚 Обучение', callback_data: 'menu_learning' }],
+        [{ text: '🔧 Инструменты', callback_data: 'menu_tools' }],
+        [{ text: '💻 Примеры кода', callback_data: 'menu_examples' }],
+        [{ text: '❓ Помощь', callback_data: 'menu_help' }],
+      ],
+    };
 
     try {
-      // Отправляем напрямую через Telegram API
-      await ctx.reply(welcomeText, { parse_mode: 'Markdown' });
-      logger.info('✅ Sent /start response successfully');
+      // Отправляем напрямую через Telegram API с кнопками
+      await ctx.reply(welcomeText, {
+        parse_mode: 'Markdown',
+        reply_markup: buttons,
+      });
+      logger.info('✅ Sent /start response with buttons successfully');
     } catch (error) {
       logger.error('❌ Failed to send /start response:', error);
     }
   }
 
   async handleMenuCommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
-    // TODO: Implement menu
-    logger.info('📋 Menu command - to be implemented');
+    logger.info('📋 Handling menu command');
+
+    // Получаем Telegram service
+    const telegramService = runtime.getService('telegram');
+    if (!telegramService || !telegramService.bot) {
+      logger.error('❌ TelegramService not available');
+      return;
+    }
+
+    const chatId = message.content.channelId || message.content.chatId;
+    if (!chatId) {
+      logger.error('❌ No chatId in message');
+      return;
+    }
+
+    const menuText = `📋 **Главное меню Vibee**
+
+Выбери раздел, который тебя интересует:`;
+
+    const buttons = {
+      inline_keyboard: [
+        [{ text: '🎨 Обучение модели', callback_data: 'menu_training' }],
+        [{ text: '📚 Обучение', callback_data: 'menu_learning' }],
+        [{ text: '🔧 Инструменты', callback_data: 'menu_tools' }],
+        [{ text: '💻 Примеры кода', callback_data: 'menu_examples' }],
+        [{ text: '❓ Помощь', callback_data: 'menu_help' }],
+        [{ text: '📊 Мой прогресс', callback_data: 'menu_progress' }],
+      ],
+    };
+
+    try {
+      await telegramService.bot.telegram.sendMessage(chatId, menuText, {
+        parse_mode: 'Markdown',
+        reply_markup: buttons,
+      });
+      logger.info('✅ Menu sent successfully with buttons');
+    } catch (error) {
+      logger.error('❌ Failed to send menu:', error);
+    }
+  }
+
+  async handleShowNewsCommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
+    logger.info('📰 Handling show news command');
+
+    const telegramService = runtime.getService('telegram');
+    if (!telegramService || !telegramService.bot) {
+      logger.error('❌ TelegramService not available');
+      return;
+    }
+
+    const chatId = message.content.channelId || message.content.chatId;
+    if (!chatId) {
+      logger.error('❌ No chatId in message');
+      return;
+    }
+
+    // Получаем кэш новостей
+    const newsCache = (global as any).newsCache;
+    if (!newsCache || newsCache.size === 0) {
+      await telegramService.bot.telegram.sendMessage(
+        chatId,
+        '📭 Пока нет новостей в кэше. Подождите немного, RSS-монитор найдет интересные новости!',
+        { parse_mode: 'Markdown' }
+      );
+      return;
+    }
+
+    // Берем последние 3 новости
+    const newsEntries = Array.from(newsCache.entries()).slice(-3);
+
+    for (const [newsId, newsData] of newsEntries) {
+      const newsText = `📰 **${newsData.title}**\n\n${newsData.contentSnippet || ''}\n\n🔗 ${newsData.link}`;
+
+      const keyboardMarkup = {
+        inline_keyboard: [
+          [
+            { text: '📝 Создать сценарий для Reels', callback_data: `reels:${newsId}` },
+          ],
+        ],
+      };
+
+      await telegramService.bot.telegram.sendMessage(chatId, newsText, {
+        parse_mode: 'Markdown',
+        reply_markup: keyboardMarkup,
+      });
+    }
   }
 
   async handleHelpCommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
-    // TODO: Implement help
-    logger.info('❓ Help command - to be implemented');
+    logger.info('❓ Handling help command');
+
+    const telegramService = runtime.getService('telegram');
+    if (!telegramService || !telegramService.bot) {
+      logger.error('❌ TelegramService not available');
+      return;
+    }
+
+    const chatId = message.content.channelId || message.content.chatId;
+    if (!chatId) {
+      logger.error('❌ No chatId in message');
+      return;
+    }
+
+    const helpText = `🆘 **Справка по Vibee**
+
+**Доступные команды:**
+/start - Начать работу с ботом
+/menu - Показать главное меню
+/help - Эта справка
+
+**Как использовать:**
+Просто пиши свои вопросы на русском языке! Я отвечу и добавлю интерактивные кнопки для удобства.
+
+**Примеры вопросов:**
+• "Как начать с vibe-coding?"
+• "Покажи пример TypeScript кода"
+• "Какие инструменты мне нужны?"
+• "Помоги настроить Bun"
+
+**Интерактивные элементы:**
+Я автоматически добавляю кнопки, меню и клавиатуры в зависимости от контекста разговора!
+
+**Нужна помощь?**
+Просто спроси - я здесь, чтобы помочь! 💪`;
+
+    const buttons = {
+      inline_keyboard: [
+        [{ text: '📖 Документация ElizaOS', url: 'https://docs.elizaos.ai' }],
+        [{ text: '🚀 Vibe-coding гайд', url: 'https://bun.sh/docs' }],
+        [{ text: '🔙 Назад в меню', callback_data: 'back_to_menu' }],
+      ],
+    };
+
+    try {
+      await telegramService.bot.telegram.sendMessage(chatId, helpText, {
+        parse_mode: 'Markdown',
+        reply_markup: buttons,
+      });
+      logger.info('✅ Help sent successfully with buttons');
+    } catch (error) {
+      logger.error('❌ Failed to send help:', error);
+    }
+  }
+
+  async handleQuickstartCommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
+    logger.info('⚡ Handling quickstart command');
+
+    const telegramService = runtime.getService('telegram');
+    if (!telegramService || !telegramService.bot) {
+      logger.error('❌ TelegramService not available');
+      return;
+    }
+
+    const chatId = message.content.channelId || message.content.chatId;
+    if (!chatId) return;
+
+    const quickstartText = `⚡ **Быстрый старт в разработке**
+
+🚀 **3 шага к успеху:**
+
+**1️⃣ Установи Bun** (быстрее Node.js)
+\`\`\`bash
+curl -fsSL https://bun.sh | bash
+bun create next-app my-app
+\`\`\`
+
+**2️⃣ Добавь TypeScript**
+\`\`\`bash
+bun add typescript @types/node --save-dev
+npx tsc --init
+\`\`\`
+
+**3️⃣ Подключи AI-помощника**
+\`\`\`bash
+npm install claude-api
+\`\`\`
+
+**Результат:** Готовая среда за 5 минут! 🎯
+
+**Дальше:** изучай React, Next.js, AI-инструменты.
+
+Что выбрать первым? 🤔`;
+
+    const buttons = {
+      inline_keyboard: [
+        [{ text: '🎨 Начать с React', callback_data: 'learn_react' }],
+        [{ text: '🤖 Изучить AI-инструменты', callback_data: 'learn_ai' }],
+        [{ text: '📚 План развития', callback_data: 'learning_plan' }],
+      ],
+    };
+
+    try {
+      await telegramService.bot.telegram.sendMessage(chatId, quickstartText, {
+        parse_mode: 'Markdown',
+        reply_markup: buttons,
+      });
+    } catch (error) {
+      logger.error('❌ Failed to send quickstart:', error);
+    }
+  }
+
+  async handleToolsCommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
+    logger.info('🔧 Handling tools command');
+
+    const telegramService = runtime.getService('telegram');
+    if (!telegramService || !telegramService.bot) return;
+
+    const chatId = message.content.channelId || message.content.chatId;
+    if (!chatId) return;
+
+    const toolsText = `🔧 **ТОП-инструменты 2025**
+
+**🚀 Основные:**
+• **Bun** - замена Node.js (в 3 раза быстрее!)
+• **TypeScript** - type safety по умолчанию
+• **Next.js 15** - React король
+
+**🤖 AI Coding:**
+• **Cursor** / **Windsurf** - IDE с AI внутри
+• **Claude 3.5 Sonnet** - лучший для кода
+• **GitHub Copilot** - быстрые подсказки
+
+**☁️ Cloud & БД:**
+• **Supabase** - Postgres + Auth + Storage
+• **Vercel** - деплой без боли
+• **Drizzle ORM** - TypeScript-first
+
+**🎨 UI & Стили:**
+• **Tailwind CSS** - utility-first
+• **Framer Motion** - анимации
+• **Zustand** - простое состояние
+
+**Какой инструмент изучить первым?** 💪`;
+
+    const buttons = {
+      inline_keyboard: [
+        [{ text: '⚡ Bun', callback_data: 'tool_bun' }],
+        [{ text: '🤖 Cursor', callback_data: 'tool_cursor' }],
+        [{ text: '☁️ Supabase', callback_data: 'tool_supabase' }],
+        [{ text: '🎨 Tailwind', callback_data: 'tool_tailwind' }],
+      ],
+    };
+
+    try {
+      await telegramService.bot.telegram.sendMessage(chatId, toolsText, {
+        parse_mode: 'Markdown',
+        reply_markup: buttons,
+      });
+    } catch (error) {
+      logger.error('❌ Failed to send tools:', error);
+    }
+  }
+
+  async handleAICommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
+    logger.info('🤖 Handling AI command');
+
+    const telegramService = runtime.getService('telegram');
+    if (!telegramService || !telegramService.bot) return;
+
+    const chatId = message.content.channelId || message.content.chatId;
+    if (!chatId) return;
+
+    const aiText = `🤖 **AI в разработке - Полный гид**
+
+**🎯 Что AI может делать:**
+✅ Генерировать код по описанию
+✅ Находить и исправлять баги
+✅ Писать тесты и документацию
+✅ Code review и предложения
+✅ Объяснять сложный код
+✅ Оптимизировать производительность
+
+**🔥 Лучшие AI-инструменты:**
+
+**1. Claude 3.5 Sonnet**
+\`\`\`
+Лучший для сложной логики
+Понимает архитектуру
+Супер для код-ревью
+\`\`\`
+
+**2. Cursor IDE**
+\`\`\`
+AI прямо в редакторе
+Chat с кодом
+Автодополнение
+\`\`\`
+
+**3. GitHub Copilot**
+\`\`\`
+Быстрые подсказки
+Контекстные предложения
+Inline suggestions
+\`\`\`
+
+**💡 Правила работы с AI:**
+• Всегда проверяй код
+• Понимай что делаешь
+• Используй как напарника, не замену
+• Задавай правильные вопросы
+
+**Готов начать использовать AI? 🚀**`;
+
+    const buttons = {
+      inline_keyboard: [
+        [{ text: '💻 Показать пример кода', callback_data: 'ai_example' }],
+        [{ text: '🛠️ Настроить Cursor', callback_data: 'ai_setup' }],
+        [{ text: '📚 Изучить промптинг', callback_data: 'ai_prompting' }],
+      ],
+    };
+
+    try {
+      await telegramService.bot.telegram.sendMessage(chatId, aiText, {
+        parse_mode: 'Markdown',
+        reply_markup: buttons,
+      });
+    } catch (error) {
+      logger.error('❌ Failed to send AI info:', error);
+    }
+  }
+
+  async handleTTSCommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
+    logger.info('🎤 Handling TTS command');
+
+    const telegramService = runtime.getService('telegram');
+    if (!telegramService || !telegramService.bot) return;
+
+    const chatId = message.content.channelId || message.content.chatId;
+    if (!chatId) return;
+
+    const ttsText = `🎤 **Генерация голоса (TTS)**
+
+Умею превращать текст в речь! 🎧
+
+**Как использовать:**
+• Просто напишите любой текст
+• Я автоматически создам аудио
+• Поддерживаю разные голоса
+
+**Примеры команд:**
+\`Create TTS Привет, мир!\`
+\`TEXT_TO_SPEECH Vibe coding - это круто!\`
+\`Озвучь этот текст для подкаста\`
+
+**Что можно озвучить:**
+🎙️ Подкасты и аудиокниги
+🎓 Обучающие материалы
+🤖 Голосовые ассистенты
+📱 Уведомления
+🎮 Игровые персонажи
+
+**Напишите текст для озвучивания:** ✨`;
+
+    const buttons = {
+      inline_keyboard: [
+        [{ text: '🎤 Озвучить пример', callback_data: 'tts_demo' }],
+        [{ text: '🔧 Настройки голоса', callback_data: 'tts_settings' }],
+      ],
+    };
+
+    try {
+      await telegramService.bot.telegram.sendMessage(chatId, ttsText, {
+        parse_mode: 'Markdown',
+        reply_markup: buttons,
+      });
+    } catch (error) {
+      logger.error('❌ Failed to send TTS info:', error);
+    }
+  }
+
+  async handleNewsCommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
+    logger.info('📰 Handling news command');
+
+    const telegramService = runtime.getService('telegram');
+    if (!telegramService || !telegramService.bot) return;
+
+    const chatId = message.content.channelId || message.content.chatId;
+    if (!chatId) return;
+
+    try {
+      // Получаем News Monitor Service
+      const newsService = runtime.getService('news-monitor');
+      if (!newsService) {
+        await telegramService.bot.telegram.sendMessage(
+          chatId,
+          '❌ News Monitor сервис не запущен. Попробуйте позже.',
+          { parse_mode: 'Markdown' }
+        );
+        return;
+      }
+
+      // Запускаем проверку новостей
+      await telegramService.bot.telegram.sendMessage(
+        chatId,
+        '🔍 Проверяю новости по всем источникам...\n\nЭто займет 30-60 секунд ⏳',
+        { parse_mode: 'Markdown' }
+      );
+
+      // Вызываем проверку новостей напрямую
+      await newsService.checkNews(runtime);
+
+      await telegramService.bot.telegram.sendMessage(
+        chatId,
+        '✅ Проверка новостей завершена!\n\nНовые новости отправлены в ваш чат автоматически.\n\nСледующая проверка через час ⏰',
+        { parse_mode: 'Markdown' }
+      );
+
+      logger.info('✅ Manual news check completed');
+    } catch (error) {
+      logger.error('❌ Failed to check news:', error);
+      await telegramService.bot.telegram.sendMessage(
+        chatId,
+        '❌ Ошибка при проверке новостей. Попробуйте позже.',
+        { parse_mode: 'Markdown' }
+      );
+    }
+  }
+
+  async handleChatCommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
+    logger.info('💬 Handling chat command');
+
+    const userId = message.content?.userId || message.userId || 'unknown';
+    if (!userId) return;
+
+    try {
+      // Получаем VibeMates Chat Service
+      const chatService = runtime.getService('vibemates-chat');
+      if (!chatService) {
+        await runtime.messageManager.create({
+          userId,
+          content: { text: '❌ VibeMates Chat сервис не запущен. Попробуйте позже.' },
+          roomId: `direct-${userId}`,
+        });
+        return;
+      }
+
+      // Показываем чат
+      await chatService.handleChatCommand(runtime, userId);
+
+      logger.info('✅ VibeMates chat displayed');
+    } catch (error) {
+      logger.error('❌ Failed to show chat:', error);
+      await runtime.messageManager.create({
+        userId,
+        content: { text: '❌ Ошибка при загрузке чата. Попробуйте позже.' },
+        roomId: `direct-${userId}`,
+      });
+    }
+  }
+
+  async handleMateCommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
+    logger.info('🤖 Handling mate command');
+
+    const userId = message.content?.userId || message.userId || 'unknown';
+    if (!userId) return;
+
+    try {
+      // Получаем VibeMates Commands Service
+      const matesService = runtime.getService('vibemates-commands');
+      if (!matesService) {
+        await runtime.messageManager.create({
+          userId,
+          content: { text: '❌ VibeMates сервис не запущен. Попробуйте позже.' },
+          roomId: `direct-${userId}`,
+        });
+        return;
+      }
+
+      // Показываем список VibeMates
+      await matesService.handleMateCommand(runtime, message, {} as State);
+
+      logger.info('✅ VibeMates list displayed');
+    } catch (error) {
+      logger.error('❌ Failed to show mates:', error);
+      await runtime.messageManager.create({
+        userId,
+        content: { text: '❌ Ошибка при загрузке VibeMates. Попробуйте позже.' },
+        roomId: `direct-${userId}`,
+      });
+    }
   }
 }
 
@@ -247,6 +792,7 @@ const menuCommandAction: Action = {
           type: 'menu',
           title: 'Разделы:',
           options: [
+            { text: '🎨 Обучение модели', callback_data: 'menu_training' },
             { text: '📚 Обучение', callback_data: 'menu_learning' },
             { text: '🔧 Инструменты', callback_data: 'menu_tools' },
             { text: '💻 Примеры кода', callback_data: 'menu_examples' },
@@ -544,6 +1090,33 @@ Vibe-coding - это современный подход к разработке
 • Рекомендации по обучению
 
 Продолжай учиться! 💪`;
+          break;
+
+        case 'menu_training':
+          responseText = `🎨 **Обучение персональной ИИ-модели**
+
+Создай свою собственную AI-модель для генерации изображений!
+
+🚀 **Что это даёт:**
+• Генерация изображений с твоим лицом
+• Крутые арты и аватары
+• Уникальный контент для соцсетей
+
+⚡️ **Тестовый режим** (1 шаг, ~2-5 минут)
+Быстрая проверка что весь пайплайн работает!
+
+📸 **Что нужно:**
+• 10-20 фото своего лица
+• Разные ракурсы и освещение
+• Хорошее качество
+
+Что хочешь сделать?`;
+          uiElements = [
+            { type: 'inline_callback', text: '🚀 Начать обучение', callback_data: 'training_start' },
+            { type: 'inline_callback', text: '❓ Как это работает?', callback_data: 'training_help' },
+            { type: 'inline_callback', text: '📋 Мои модели', callback_data: 'training_models' },
+            { type: 'inline_callback', text: '🔙 Назад в меню', callback_data: 'back_to_menu' },
+          ];
           break;
 
         case 'back_to_menu':

@@ -1,0 +1,63 @@
+{
+  "timestamp": "2025-11-14T01:22:00.171983",
+  "total": 4,
+  "passed": 0,
+  "failed": 4,
+  "pass_rate": 0.0,
+  "results": [
+    {
+      "suite": "conversational_interface",
+      "id": "CONV_001",
+      "description": "Тест приветствия - кнопки запускают диалог",
+      "priority": "critical",
+      "status": "failed",
+      "duration_ms": 3647,
+      "errors": [
+        "Missing expected text: 'Vibee'",
+        "Missing expected text: 'коллега'",
+        "Contains forbidden text: 'Быстро'"
+      ],
+      "response_preview": "Привет снова, Дмирий! 👋 Ты всегда можешь рассчитывать на меня!\n\nЯ здесь, чтобы помочь тебе с:\n*   **Vibe-coding и быстрая разработка** ⚡️: Узнай, как использовать Bun, TypeScript, React, Next.js для создания крутых проектов с максимальной скоростью!\n*   **AI-агенты и ElizaOS** 🤖: Создавай умных ботов и автоматизируй рутину с помощью AI.\n*   **Последние тренды и лучшие практики** 🔥: Разберись в самых актуальных технологиях и подходах в современной разработке.\n*   **Оптимизация производительности "
+    },
+    {
+      "suite": "conversational_interface",
+      "id": "CONV_002",
+      "description": "Тест кнопки 'Показать команды' - запускает диалог",
+      "priority": "critical",
+      "status": "failed",
+      "duration_ms": 4645,
+      "errors": [
+        "Missing expected text: 'команды'",
+        "Missing expected text: 'список'",
+        "Response too short: 36 < 100"
+      ],
+      "response_preview": "ERROR: No message with buttons found"
+    },
+    {
+      "suite": "conversational_interface",
+      "id": "CONV_003",
+      "description": "Тест команды 'покажи новости' - диалоговый режим",
+      "priority": "critical",
+      "status": "failed",
+      "duration_ms": 3740,
+      "errors": [
+        "Missing expected text: 'новост'",
+        "Missing expected text: 'последн'"
+      ],
+      "response_preview": "Привет, Дмирий! 👋 У меня всё супер, спасибо! Я всегда готов к новым задачам и помогать тебе в мире разработки.\n\nКак у тебя дела? Может, есть какие-то свежие идеи для проектов или вопросы, которые ты хотел бы обсудить? Я весь во внимании! 🚀\nАга, /train! Снова в бой! 💪 Но чтобы наша \"тренировка\" принесла максимальный результат, мне очень важно понять, что именно ты хочешь прокачать.\n\nДавай ещё раз уточним:\n1.  **Vibe-coding и быстрый старт** (Bun, TypeScript, React, Next.js) 🚀 — как быстро создава"
+    },
+    {
+      "suite": "conversational_interface",
+      "id": "CONV_004",
+      "description": "Тест диалога - создание рилз из новости",
+      "priority": "critical",
+      "status": "failed",
+      "duration_ms": 12906,
+      "errors": [
+        "Missing expected text: 'рилз'",
+        "Missing expected text: 'иде'"
+      ],
+      "response_preview": "Ага, /train! Снова в бой! 💪 Но чтобы наша \"тренировка\" принесла максимальный результат, мне очень важно понять, что именно ты хочешь прокачать.\n\nДавай ещё раз уточним:\n1.  **Vibe-coding и быстрый старт** (Bun, TypeScript, React, Next.js) 🚀 — как быстро создавать крутые проекты с современными инструментами?\n2.  **AI-агенты и ElizaOS** 🤖 — как строить умных ботов, автоматизировать задачи и интегрировать AI?\n3.  **Оптимизация и DevOps** ⚡️ — как сделать проекты быстрыми, надёжными и автоматизироват"
+    }
+  ]
+}

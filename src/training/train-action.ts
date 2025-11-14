@@ -8,6 +8,45 @@ import { logger } from '@elizaos/core';
 import { PhotoCollectorService } from './PhotoCollectorService';
 import { ZipService } from './ZipService';
 import { fal } from '@fal-ai/client';
+import type { UIElement } from '../telegram-ui-plugin';
+import { TelegramUIGenerator } from '../telegram-ui-plugin';
+
+/**
+ * Отправить сообщение с кнопками через Telegram
+ */
+async function sendTelegramMessageWithButtons(
+  runtime: IAgentRuntime,
+  userId: string,
+  text: string,
+  uiElements?: UIElement[]
+): Promise<void> {
+  try {
+    const telegramService = runtime.getService('telegram');
+    if (!telegramService || !telegramService.bot) {
+      logger.warn('[TrainAction] Telegram service not available');
+      return;
+    }
+
+    // Конвертируем ui_elements в reply_markup
+    let replyMarkup: any = undefined;
+    if (uiElements && uiElements.length > 0) {
+      const markup = TelegramUIGenerator.convertToTelegramMarkup(uiElements);
+      replyMarkup = markup.inline_keyboard.length > 0 ? { inline_keyboard: markup.inline_keyboard } : undefined;
+    }
+
+    // Отправляем сообщение напрямую через Telegram bot
+    // Используем MarkdownV2 для лучшей совместимости или отключаем parse_mode
+    await telegramService.bot.telegram.sendMessage(userId, text, {
+      // parse_mode: 'Markdown', // Отключаем Markdown чтобы избежать ошибок парсинга
+      reply_markup: replyMarkup,
+    });
+
+    logger.info(`[TrainAction] 📤 Sent message with ${uiElements?.length || 0} buttons to ${userId}`);
+  } catch (error) {
+    logger.error('[TrainAction] ❌ Error sending message with buttons:', error);
+    throw error;
+  }
+}
 
 export const trainLoraAction: Action = {
   name: 'TRAIN_LORA',
@@ -22,9 +61,15 @@ export const trainLoraAction: Action = {
 
   validate: async (_runtime: IAgentRuntime, message: Memory): Promise<boolean> => {
     const text = message.content?.text?.toLowerCase();
-    if (!text) return false;
+    logger.info(`[TrainAction] validate() called with text: "${text}"`);
+    if (!text) {
+      logger.info('[TrainAction] validate() - no text, returning false');
+      return false;
+    }
     // Точно проверяем что это команда /train, а не просто упоминание слова
-    return text.startsWith('/train') || text.includes(' /train');
+    const result = text.startsWith('/train') || text.includes(' /train');
+    logger.info(`[TrainAction] validate() result: ${result}`);
+    return result;
   },
 
   // Не генерировать автоматический ответ через LLM
@@ -37,9 +82,11 @@ export const trainLoraAction: Action = {
     _options: any,
     callback: HandlerCallback
   ): Promise<ActionResult> => {
+    logger.info('[TrainAction] 🎯 HANDLER CALLED!');
     try {
       const text = message.content?.text || '';
       const userId = message.entityId;
+      logger.info(`[TrainAction] Processing text: "${text}" from user: ${userId}`);
 
       const photoCollector = runtime.getService<PhotoCollectorService>('photo-collector' as any);
       const zipService = runtime.getService<ZipService>('zip-service' as any);
@@ -55,8 +102,7 @@ export const trainLoraAction: Action = {
       // /train help - Помощь и объяснение
       // ============================================================================
       if (text.includes('/train help') || text === '/train') {
-        await callback({
-          text: `🎨 **Обучение персональной ИИ-модели**\n\n` +
+        const helpText = `🎨 **Обучение персональной ИИ-модели**\n\n` +
                 `**Что это?**\n` +
                 `Создай свою собственную ИИ-модель для генерации изображений! 🚀\n` +
                 `Загрузи фото своего лица → Получи модель → Генерируй крутые арты с собой!\n\n` +
@@ -70,14 +116,25 @@ export const trainLoraAction: Action = {
                 `👤 Только твоё лицо\n` +
                 `✨ Качественные фото\n\n` +
                 `3️⃣ **Подтверди обучение:**\n` +
-                `\`/train confirm\`\n\n` +
+                `Нажми кнопку "✅ Подтвердить" после загрузки фото\n\n` +
                 `4️⃣ **Жди 2-5 минут** ⚡️\n` +
                 `_Тестовый режим: 1 шаг обучения_\n\n` +
                 `5️⃣ **Проверь что всё работает!** ✅\n\n` +
                 `**Другие команды:**\n` +
                 `• \`/train cancel\` - отменить сбор\n\n` +
-                `💡 **Это тест:** Модель не будет идеальной, но покажет что пайплайн работает!`,
-        });
+                `💡 **Это тест:** Модель не будет идеальной, но покажет что пайплайн работает!`;
+
+        const buttons: UIElement[] = [
+          { type: 'inline_callback', text: '🚀 Начать сейчас', callback_data: 'quick_train_start' },
+          { type: 'inline_url', text: '📖 Документация', url: 'https://docs.fal.ai/flux/lora-training' },
+        ];
+
+        // Отправляем напрямую через Telegram с кнопками
+        await sendTelegramMessageWithButtons(runtime, userId, helpText, buttons);
+
+        // Вызываем callback чтобы ElizaOS знал что действие выполнено
+        await callback({ text: '' }); // Пустой текст, так как уже отправили через Telegram
+
         return { success: true };
       }
 
@@ -111,8 +168,7 @@ export const trainLoraAction: Action = {
         // Сохраняем steps в сессии
         (session as any).steps = steps;
 
-        await callback({
-          text: `🎉 **Отлично! Начинаем обучение модели "${faceName}"**\n\n` +
+        const startText = `🎉 **Отлично! Начинаем обучение модели "${faceName}"**\n\n` +
                 `🎯 Триггерное слово: \`${triggerWord}\`\n` +
                 `_Его нужно будет использовать при генерации: "a photo of ${triggerWord}"_\n\n` +
                 `${qualityEmoji} **Качество**: ${qualityText} (${steps} шагов)\n` +
@@ -129,11 +185,19 @@ export const trainLoraAction: Action = {
                 `❌ Солнечные очки/маски\n` +
                 `❌ Размытые или тёмные фото\n\n` +
                 `━━━━━━━━━━━━━━━━━━━━\n\n` +
-                `📤 **ШАГ 2: После загрузки фото напиши:**\n` +
-                `\`/train confirm\` - начать обучение\n\n` +
-                `💡 _Бот будет показывать прогресс после каждого фото_\n\n` +
-                `Отменить: \`/train cancel\``,
-        });
+                `📤 **ШАГ 2: После загрузки фото нажми кнопку:**\n\n` +
+                `💡 _Бот будет показывать прогресс после каждого фото_`;
+
+        const startButtons: UIElement[] = [
+          { type: 'inline_callback', text: '✅ Подтвердить и начать обучение', callback_data: 'train_confirm' },
+          { type: 'inline_callback', text: '❌ Отменить', callback_data: 'train_cancel' },
+        ];
+
+        // Отправляем напрямую через Telegram с кнопками
+        await sendTelegramMessageWithButtons(runtime, userId, startText, startButtons);
+
+        // Вызываем callback чтобы ElizaOS знал что действие выполнено
+        await callback({ text: '' });
 
         logger.info(`[TrainAction] Started session for ${userId}: ${faceName}`);
         return { success: true };

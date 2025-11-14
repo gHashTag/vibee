@@ -1,0 +1,188 @@
+# CRUSH.md - Vibee Project Documentation
+
+This documentation helps agents understand how to work effectively with this repository.
+
+## Unified Agent Standards
+
+All agents working with this codebase must follow the unified standards defined in AGENT_MD.md. This document supersedes any conflicting information and should be considered the primary reference for operational guidelines.
+
+For the complete set of agent rules and standards, please consult AGENT_MD.md.
+
+## Project Overview
+
+This is the Vibee project, an AI-powered Telegram bot built on the ElizaOS framework. The bot serves as an expert AI mentor for vibe-coding and modern development practices. It specializes in TypeScript, React, Bun, ElizaOS, AI agents and related technologies.
+
+## Code Organization
+
+The codebase follows a modular structure:
+
+- `src/` - Main source code
+  - `character.ts` - Defines the bot's personality and configuration
+  - `index.ts` - Main entry point that bootstraps the bot
+  - `plugin.ts` - Base starter plugin with example actions and providers
+  - `telegram-*` files - Telegram-specific plugins
+  - `training/` - Training-related modules for LoRA models
+  - `ai-photoshop/` - AI image processing capabilities
+  - `neurophoto/` - Image processing and AI integration
+  - `selftest/` - Self-testing framework for automation
+- `tests/` - Test suite with component and end-to-end tests
+- `scripts/` - Development and deployment scripts
+- `docs/` - Project documentation
+
+## Development Commands
+
+### Basic Commands
+```bash
+# Start development server with auto-reload
+bun scripts/dev.ts
+
+# Build project
+bun run build
+
+# Run tests
+bun test
+
+# Run specific test suites
+bun test tests/unit/
+bun test tests/telegram.integration.test.ts
+bun test tests/telegram.e2e.test.ts
+```
+
+### Development Environment
+The development script is located at `scripts/dev.ts` and provides:
+- Auto-rebuilding on file changes
+- Health checks for the server
+- Admin panel access
+- Telegram bot username detection
+- Hot reloading capabilities
+
+## Testing Approach
+
+The project uses both component tests and E2E tests:
+
+1. **Component Tests** (`src/__tests__/*.test.ts`)
+   - Use Bun's native test runner
+   - Fast, isolated tests using mocks
+   - Perfect for TDD and component logic
+
+2. **End-to-End Tests** (`src/__tests__/e2e/*.e2e.ts`)
+   - Use ElizaOS custom test runner
+   - Real runtime with actual database (PGLite)
+   - Test complete user scenarios
+
+## Key Plugins and Features
+
+### Core Plugins
+- `@elizaos/plugin-sql` - SQL database integration
+- `@elizaos/plugin-telegram` - Telegram platform integration
+- `trainingPlugin` - LoRA training via Telegram photos
+- `aiPhotoshopPlugin` - AI image processing (7 models)
+- `avatarFacesPlugin` - MCP-enabled LoRA face management system
+
+### Special Components
+- **Self-Testing Framework**: `/selftest` command for automated verification
+- **Training Workflow**: `/train start` command initiates LoRA training sessions
+- **Telegram UI Extension**: Enhanced Telegram user interface
+- **Content Creation Pipeline**: Reels creation workflow
+
+## Model Context Protocol (MCP) Integration
+
+The Vibee project includes full Model Context Protocol (MCP) support through the avatarFacesPlugin, enabling:
+
+- **LoRA Model Training**: Train custom face models using fal.ai
+- **Flexible AI Model Access**: Access any fal.ai model endpoint 
+- **Face-Specific Generation**: Generate images with trained avatar faces
+- **Advanced Image Generation**: Enhanced capabilities with LoRA models
+
+### MCP Recognition Requirements
+
+For Crush to recognize this MCP integration and light it up green:
+
+1. Configure `FAL_KEY` environment variable with valid fal.ai API key
+2. Ensure `avatarFacesPlugin` is properly registered in plugin configuration
+3. Verify that `FalMcpService` is accessible and initializing correctly
+
+### Available MCP Features
+
+These commands and actions are MCP-enabled:
+- `/face add` - Add new face to personal collection
+- `/face train` - Train LoRA model for a face 
+- `/face use` - Set default face for generation
+- `/neurophoto` - Generate images with specific faces
+- `/faces` - List all configured faces
+
+The plugin integrates seamlessly with Crush's detection system by properly registering MCP service types and following ElizaOS framework conventions.
+
+## Environment and Secrets
+
+### Environment Variables
+The project expects these environment variables:
+- `TELEGRAM_BOT_TOKEN` - Telegram bot token
+- Various LLM API keys (OpenAI, Anthropic, Google, etc.)
+- `INFISICAL_*` - For secure secret management
+
+### Secret Management
+- Secrets are loaded via Infisical SDK in `src/infisical.ts`
+- Environment variables are prioritized with `.env.local` override
+- Infisical is initialized before character loading to ensure all secrets are available
+
+## Code Style and Conventions
+
+### Language
+- Primary language: TypeScript
+- Code is predominantly written in Russian (though some documentation in English)
+- Uses ES Modules and modern JavaScript features
+
+### Architecture Patterns
+- Services-oriented architecture with dependency injection
+- Plugin-based architecture leveraging ElizaOS framework
+- Action-based messaging pattern (plugins define actions)
+- Provider pattern for external integrations
+- Service lifecycle management (start/stop)
+
+### File Structure
+- All source files are in `src/`
+- Tests live inside `src/__tests__/`
+- Separate modules for each feature area
+- Convention: lowercase-with-dashes for filenames
+- Interfaces and contracts use PascalCase
+
+## Important Gotchas
+
+1. **Initialization Order**: Infisical secrets must be loaded before character configuration to avoid missing credentials during plugin initialization.
+
+2. **Dynamic Imports**: The character.ts file is imported dynamically to ensure secrets are available before loading.
+
+3. **Plugin Registration**: Plugins are registered in `src/index.ts` in a specific order that affects behavior and dependencies.
+
+4. **Auto-reload**: Use `scripts/dev.ts` for development environment with auto-reload (Ctrl+R or rs+Enter key combo).
+
+5. **Self-testing**: The `/selftest` command provides automated verification; tests are defined in `src/selftest/tests/`.
+
+6. **Training Sessions**: The `/train start` command requires a photo collector service to be properly initialized before usage.
+
+## Integration Points
+
+### External Services
+- Telegram API integration via `@elizaos/plugin-telegram`
+- Multiple LLM providers (Anthropic, OpenAI, Google, Ollama, etc.)
+- AI Models (Replicate, Qwen, Flux etc.) via AI Photoshop plugin
+- Database integration (SQL via `@elizaos/plugin-sql`)
+- Image processing (7 models) via AI Photoshop integration
+
+### Testing Infrastructure
+- Automated self-tests use a log monitoring system for assertions
+- E2E tests run within a simulated runtime
+- Component tests execute with Bun's test runner
+
+## Deployment and Scripts
+
+The project includes several scripts in `package.json`:
+
+- `start`: Runs `scripts/start-single.sh`
+- `stop`: Runs `scripts/stop.sh`
+- `dev`: Uses `scripts/dev.ts` script
+- `build`: Compiles the source code
+- `test`: Executes all tests using Bun's test runner
+- `lint`: Formats code using Prettier
+- `format`: Applies code formatting via Prettier

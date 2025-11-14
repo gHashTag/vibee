@@ -1,0 +1,48 @@
+{
+  "test_name": "VibeMates Commands Test",
+  "bot_username": "agent_vibecoder_bot",
+  "tests": [
+    {
+      "id": "MATE_001",
+      "description": "Тест команды /mate - показать список VibeMates",
+      "message": "/mate",
+      "expected_responses": [
+        "AgentsGuru",
+        "PromptMaster",
+        "ReactWizard",
+        "MusicMage"
+      ],
+      "timeout": 30
+    },
+    {
+      "id": "MATE_002",
+      "description": "Тест переключения на AgentsGuru",
+      "message": "/mate agents",
+      "expected_responses": [
+        "AgentsGuru",
+        "AI-агентам"
+      ],
+      "timeout": 30
+    },
+    {
+      "id": "MATE_003",
+      "description": "Тест переключения на PromptMaster",
+      "message": "/mate prompts",
+      "expected_responses": [
+        "PromptMaster",
+        "промпт"
+      ],
+      "timeout": 30
+    },
+    {
+      "id": "MATE_004",
+      "description": "Тест команды /mate list",
+      "message": "/mate list",
+      "expected_responses": [
+        "VibeMates",
+        "Специализированные"
+      ],
+      "timeout": 30
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+/**
+ * @fileoverview Типы и утилиты для плагинной системы Vibee
+ * @author Vibee Core Team
+ * @version 1.0.0
+ */
+
+import type { Telegraf } from 'telegraf';
+import type { IAgentRuntime } from '@elizaos/core';
+import type { Logger } from '@elizaos/core';
+import type { IPlugin, PluginContext } from './plugin.interface.js';
+
+/**
+ * Базовые типы плагинов
+ */
+export enum PluginType {
+  PROVIDER = 'provider',
+  SCENE = 'scene',
+  COMMAND = 'command',
+  MIDDLEWARE = 'middleware',
+  ACTION = 'action',
+  EVENT = 'event',
+  TEMPLATE = 'template',
+}
+
+/**
+ * Состояние плагина
+ */
+export enum PluginState {
+  UNLOADED = 'unloaded',
+  LOADING = 'loading',
+  LOADED = 'loaded',
+  INITIALIZING = 'initializing',
+  ACTIVE = 'active',
+  SUSPENDED = 'suspended',
+  ERROR = 'error',
+  UNLOADING = 'unloading',
+}
+
+/**
+ * Результат операции с плагином
+ */
+export interface PluginOperationResult<T = any> {
+  success: boolean
+  data?: T
+  error?: string
+  code?: string
+  details?: Record<string, any>
+}
+
+/**
+ * Информация о плагине
+ */
+export interface PluginInfo {
+  id: string
+  name: string
+  version: string
+  description: string
+  author: string
+  type: PluginType
+  dependencies?: string[]
+  state: PluginState
+  loadedAt?: Date
+  lastHealthCheck?: Date
+}
+
+/**
+ * Конфигурация плагина
+ */
+export interface PluginConfig {
+  [key: string]: any
+  enabled?: boolean
+  priority?: number
+  timeout?: number
+  retries?: number
+}
+
+/**
+ * События жизненного цикла плагина
+ */
+export interface PluginLifecycleEvent {
+  pluginId: string
+  state: PluginState
+  timestamp: Date
+  error?: string
+  details?: Record<string, any>
+}
+
+/**
+ * Хуки жизненного цикла
+ */
+export interface PluginLifecycleHooks {
+  onLoad?: (pluginId: string) => Promise<void> | void
+  onInit?: (pluginId: string) => Promise<void> | void
+  onStart?: (pluginId: string) => Promise<void> | void
+  onStop?: (pluginId: string) => Promise<void> | void
+  onError?: (pluginId: string, error: Error) => Promise<void> | void
+  onHealthCheck?: (pluginId: string) => Promise<boolean> | boolean
+}
+
+/**
+ * Контекст выполнения плагина
+ */
+export interface PluginExecutionContext {
+  runtime: IAgentRuntime
+  logger: Logger
+  config: Record<string, any>
+  startTime: Date
+  requestId: string
+}
+
+/**
+ * Результат проверки здоровья плагина
+ */
+export interface PluginHealthStatus {
+  healthy: boolean
+  message: string
+  details?: Record<string, any>
+  lastChecked: Date
+}
+
+/**
+ * Опции регистрации плагина
+ */
+export interface PluginRegistrationOptions {
+  autoInit?: boolean
+  priority?: number
+  timeout?: number
+  dependencies?: string[]
+  optional?: boolean
+}
+
+/**
+ * Результат загрузки плагина
+ */
+export interface PluginLoadResult {
+  plugin: IPlugin
+  module: any
+  path: string
+  loadTime: number
+}
+
+/**
+ * Событие обнаружения плагина
+ */
+export interface PluginDiscoveryEvent {
+  path: string
+  name: string
+  type: 'file' | 'directory'
+  pluginInfo?: Partial<PluginInfo>
+}
+
+/**
+ * Утилиты для работы с плагинами
+ */
+export const PluginUtils = {
+  /**
+   * Проверить, что плагин валиден
+   */
+  isValidPlugin(plugin: any): plugin is IPlugin {
+    return (
+      plugin &&
+      typeof plugin.id === 'string' &&
+      typeof plugin.name === 'string' &&
+      typeof plugin.version === 'string' &&
+      typeof plugin.type === 'string' &&
+      typeof plugin.register === 'function'
+    )
+  },
+
+  /**
+   * Проверить совместимость версий
+   */
+  isVersionCompatible(current: string, required: string): boolean {
+    const [cMajor, cMinor] = current.split('.').map(Number)
+    const [rMajor, rMinor] = required.split('.').map(Number)
+
+    if (cMajor !== rMajor) return false
+    return cMinor >= rMinor
+  },
+
+  /**
+   * Создать уникальный идентификатор
+   */
+  generateId(): string {
+    return `plugin_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  },
+
+  /**
+   * Создать ключ зависимости
+   */
+  createDependencyKey(name: string, version?: string): string {
+    return version ? `${name}@${version}` : name
+  },
+
+  /**
+   * Получить приоритет плагина
+   */
+  getPluginPriority(config?: PluginConfig): number {
+    return config?.priority ?? 0
+  },
+
+  /**
+   * Проверить, включен ли плагин
+   */
+  isPluginEnabled(config?: PluginConfig): boolean {
+    return config?.enabled !== false
+  },
+} as const
+
+/**
+ * События менеджера плагинов
+ */
+export type PluginManagerEvent =
+  | { type: 'plugin:registered'; pluginId: string; options: PluginRegistrationOptions }
+  | { type: 'plugin:loaded'; pluginId: string; loadTime: number }
+  | { type: 'plugin:initialized'; pluginId: string }
+  | { type: 'plugin:started'; pluginId: string }
+  | { type: 'plugin:stopped'; pluginId: string }
+  | { type: 'plugin:error'; pluginId: string; error: Error }
+  | { type: 'plugin:state:changed'; pluginId: string; oldState: PluginState; newState: PluginState }
+  | { type: 'plugin:unloaded'; pluginId: string }
+
+/**
+ * Слушатель событий менеджера
+ */
+export type PluginManagerEventListener = (event: PluginManagerEvent) => void | Promise<void>
+
+/**
+ * Стратегия загрузки плагинов
+ */
+export type PluginLoadingStrategy = {
+  sequential?: boolean
+  maxConcurrent?: number
+  timeout?: number
+  retries?: number
+}
+
+/**
+ * Стратегия разрешения зависимостей
+ */
+export type DependencyResolutionStrategy = {
+  algorithm: 'depth-first' | 'breadth-first'
+  ignoreMissing?: boolean
+  maxDepth?: number
+}
+
+/**
+ * Экспортируем основной интерфейс плагина для удобства
+ */
+export type { IPlugin, PluginContext } from './plugin.interface.js'
+
+// Экспортируем типы из plugin.interface
+export type {
+  PluginHealthStatus,
+  PluginCommand,
+  PluginMiddleware,
+  EventHandler,
+  PluginScene,
+  PluginAction,
+  PluginProvider,
+  PluginObserver,
+  PluginFactory,
+  IPluginManager,
+  PluginLoadingStrategy,
+  DependencyResolutionStrategy,
+} from './plugin.interface.js'

@@ -5,8 +5,10 @@
  */
 
 import type { Plugin, IAgentRuntime, Memory, State } from '@elizaos/core';
+import { logger } from '@elizaos/core';
 import { keyboard } from './KeyboardBuilder';
 import type { KeyboardPattern } from './types';
+import { TelegramKeyboardSenderService } from './telegram-keyboard-sender';
 
 /**
  * Example Action that uses keyboards
@@ -21,13 +23,30 @@ const exampleKeyboardAction = {
     return text?.includes('меню') || text?.includes('menu') || text?.includes('кнопки');
   },
 
-  handler: async (runtime: IAgentRuntime, message: Memory, state?: State) => {
+  handler: async (runtime: IAgentRuntime, message: Memory, state?: State, options?: any, callback?: any) => {
     // Create main menu keyboard
     const mainMenu = keyboard.builder().usePattern('main_menu').buildInline();
 
+    // Получаем TelegramService и отправляем напрямую
+    const telegramService = runtime.getService('telegram');
+
+    if (telegramService && telegramService.bot) {
+      const chatId = message.roomId?.replace(/telegram-/, '');
+
+      if (chatId) {
+        try {
+          await telegramService.bot.telegram.sendMessage(chatId, 'Выберите действие из меню ниже:', {
+            reply_markup: mainMenu,
+          });
+        } catch (error) {
+          logger.error('[SHOW_MENU] Error sending message:', error);
+        }
+      }
+    }
+
     return {
-      text: 'Выберите действие из меню ниже:',
-      replyMarkup: mainMenu,
+      success: true,
+      text: 'Menu shown',
     };
   },
 
@@ -71,7 +90,7 @@ export const telegramKeyboardsPlugin: Plugin = {
   actions: [exampleKeyboardAction],
 
   // Make keyboard builder available in runtime
-  services: [],
+  services: [TelegramKeyboardSenderService],
 
   // Provide helper functions
   providers: [],

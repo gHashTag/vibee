@@ -1,0 +1,87 @@
+// Экспорт основных интерфейсов и типов
+export type { ConfigManager } from './config-manager';
+export type { ValidationResult } from './validation';
+export type { SecretValue, SecretsConfig } from './secrets';
+
+// Экспорт реализации менеджера конфигурации
+export {
+  ConfigManagerImpl,
+  configManager,
+  createConfigManager
+} from './config-manager';
+
+// Экспорт схем валидации
+export {
+  PluginConfigSchema,
+  SystemSettingsSchema,
+  EnvironmentSchema,
+  FullConfigSchema,
+  PluginValidationSchemas,
+  NeuroPhotoSchema,
+  KieAIProviderSchema,
+  FaceTrainingSchema,
+  TelegramKeyboardsSchema,
+  StartCommandSchema,
+  TrainingPluginSchema,
+  AITutorServiceSchema,
+  VectorDatabaseSchema,
+  NewsMonitorSchema,
+  ConversationLearningSchema,
+  ContentCreationSchema,
+  AgentAgentBridgeSchema,
+  RainbowBridgeSchema,
+  AnalyticsServiceSchema,
+  SalesDepartmentSchema,
+  ContentCallbackHandlerSchema,
+  TelegramTypingSchema,
+  TTSPluginSchema,
+  MCPIntegrationSchema,
+  VibeMatesManagerSchema,
+  TemplateSystemSchema,
+  ImageProcessorSchema,
+  UserPreferencesSchema,
+  PerformanceMonitorSchema,
+  SecurityServiceSchema,
+  HealthCheckerSchema
+} from './validation';
+
+// Экспорт функций для работы с секретами
+export {
+  SECRETS_MAP,
+  getSecret,
+  hasSecret,
+  getAllSecrets,
+  validateRequiredSecrets,
+  resolveEnvVars,
+  maskSecrets,
+  checkSecurity
+} from './secrets';
+
+// Экспорт главной конфигурации
+export { PLUGIN_CONFIG } from './plugin.config';
+
+// Экспорт утилит
+export * from './utils';
+
+// Пример использования:
+/**
+ * ```typescript
+ * import { configManager } from './plugins/core';
+ *
+ * // Загрузить конфигурацию плагина
+ * const config = await configManager.loadConfig('neuro-photo');
+ *
+ * // Проверить, включен ли плагин
+ * if (configManager.isPluginEnabled('kie-ai-provider')) {
+ *   // ...
+ * }
+ *
+ * // Валидировать все плагины
+ * const results = await configManager.validateAll();
+ * results.forEach(result => {
+ *   if (!result.valid) {
+ *     console.error(`Ошибка в ${result.pluginName}:`, result.errors);
+ *   }
+ * });
+ * ```
+ */

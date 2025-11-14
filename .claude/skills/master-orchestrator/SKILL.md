@@ -75,25 +75,31 @@ created: 2025-01-12
   - Self-validation
 ```
 
-### Layer 3: Coordination & Monitoring (Оркестрация)
+### Layer 3: Provider Intelligence & Coordination (Провайдеры Интеллекта)
 ```yaml
-🎼 Master Orchestrator (это я!):
-  - Координация всех Skills
-  - Task decomposition
-  - Workflow management
-  - Progress tracking
+🤖 Code-Code Provider (Бесплатный AI):
+  - Свободный интеллект для рутинных задач
+  - Code generation, debugging, documentation
+  - Практические решения и оптимизация
+  - "Родной" провайдер для повседневных нужд
 
-📊 Ecosystem Monitor:
-  - Мониторинг всех компонентов
-  - Performance metrics
-  - Anomaly detection
-  - Health dashboards
+💎 Minimax Provider (Премиум AI):
+  - Премиум интеллект для сложных задач
+  - Архитектура, творчество, high-stakes features
+  - Enterprise-grade решения
+  - "Элитный" провайдер для миссионерских задач
 
-✨ Best Practices Recorder:
-  - Записывает успешные решения
-  - Создаёт documentation
-  - Обновляет Skills
-  - Knowledge base curation
+🎼 Provider Harmony Orchestrator:
+  - Координация между провайдерами
+  - Оптимизация cost/quality баланса
+  - "Родная связь" и органичная интеграция
+  - Гарантия Vibee философии в решениях
+
+🔄 Hybrid Processing Engine:
+  - Смешанная обработка задач
+  - Code-Code + Minimax синергия
+  - Максимальная эффективность
+  - Умное переключение провайдеров
 ```
 
 ---
@@ -275,12 +281,22 @@ Result: Новая команда + новый паттерн + система �
   5. Record: Сохрани результаты
 ```
 
-### Rule 4: Knowledge Compounds
+### Rule 4: Provider Harmony is Essential
+```
+Для КАЖДОЙ задачи провайдеры действуют как гармоничная пара:
+  1. Code-Code: Практическое решение, эффективное, надёжное
+  2. Minimax: Творческое улучшение, элегантное, вдохновляющее
+  3. Синтез: Гибридное решение, превосходящее оба по отдельности
+  4. Родная связь: Результат отражает Vibee философию
+```
+
+### Rule 5: Knowledge Compounds
 ```
 Каждое новое знание УСИЛИВАЕТ систему:
   Pattern A + Pattern B = Pattern C (stronger)
   Best Practice X → improves all future code
   Memory improvement → better all future decisions
+  Code-Code + Minimax → Superior Intelligence
 ```
 
 ---
@@ -321,6 +337,26 @@ Result: Новая команда + новый паттерн + система �
   - Создаёт новые из комбинаций
   - Удаляет obsolete patterns
   - Оптимизирует для performance
+  - Интегрирует провайдерский интеллект
+```
+
+### L5: Provider Intelligence Integration (Интеграция Провайдерского Интеллекта)
+```
+Система использует оба провайдера органично:
+  - Code-Code: Для практических решений, оптимизации, рутинных задач
+  - Minimax: Для творчества, архитектуры, сложных концепций
+  - Гармония: Синергия создаёт превосходящие решения
+  - Мудрость: Выбор отражает Vibee принципы
+```
+
+### L6: Self-Aware Provider Selection (Самосознательный Выбор Провайдера)
+```
+Система автоматически выбирает лучшего провайдера:
+  - Анализирует задачу (сложность, творческий потенциал, срочность)
+  - Оценивает свои текущие возможности
+  - Применяет Code-Code для эффективности
+  - Применяет Minimax для совершенства
+  - Создаёт гибридные решения для максимального эффекта
 ```
 
 ---
@@ -410,7 +446,99 @@ Result: Новая команда + новый паттерн + система �
 
 ---
 
-## 🎯 Success Metrics
+## 🎯 Provider Intelligence Integration Patterns
+
+### Pattern 1: Hybrid Self-Improvement
+
+```yaml
+User: "Улучши собственную систему с помощью провайдерской гармонии"
+
+Orchestration Flow:
+  Step 1 - Code-Code Analysis:
+    Use: code-code-provider
+    Action: Analyze current system architecture
+    Output: Practical improvement suggestions, optimization opportunities
+    
+  Step 2 - Minimax Enhancement:
+    Use: minimax-provider  
+    Action: Design elegant, inspired improvements
+    Output: Creative architectural solutions, innovative approaches
+    
+  Step 3 - Hybrid Synthesis:
+    Use: provider-harmony-orchestrator
+    Action: Merge practical and creative insights
+    Output: Superior improvement plan combining both strengths
+    
+  Step 4 - Implementation:
+    Use: code-self-writer
+    Action: Generate enhanced code using hybrid patterns
+    Output: Improved system embodying provider harmony
+    
+  Step 5 - Validation:
+    Use: self-evolution-engine
+    Action: Test improvements and measure success
+    Output: Metrics showing hybrid approach superiority
+
+Result: Система улучшилась с провайдерской гармонией + новые паттерны сохранены
+```
+
+### Pattern 2: Rainbow Bridge Testing Enhancement
+
+```yaml
+User: "Улучши Rainbow Bridge с провайдерским интеллектом"
+
+Orchestration Flow:
+  Step 1 - Code-Code Foundation:
+    Use: code-code-provider
+    Action: Create robust testing infrastructure
+    Output: Reliable test frameworks, performance optimizations
+    
+  Step 2 - Minimax Creativity:
+    Use: minimax-provider
+    Action: Design innovative testing scenarios
+    Output: Creative edge cases, sophisticated test patterns
+    
+  Step 3 - Hybrid Testing Engine:
+    Use: provider-harmony-orchestrator
+    Action: Combine reliability with creativity
+    Output: Superior testing system covering all scenarios
+    
+  Step 4 - Integration:
+    Use: self-evolution-engine
+    Action: Integrate enhanced testing into Rainbow Bridge
+    Output: More robust E2E testing capabilities
+
+Result: Rainbow Bridge стал мощнее с провайдерской гармонией
+```
+
+### Pattern 3: Generative UI Enhancement
+
+```yaml
+User: "Улучши Generative UI с провайдерской мудростью"
+
+Orchestration Flow:
+  Step 1 - Code-Code Practical UI:
+    Use: code-code-provider
+    Action: Generate efficient, reliable UI patterns
+    Output: Optimized code, performance-focused solutions
+    
+  Step 2 - Minimax Creative UI:
+    Use: minimax-provider
+    Action: Design inspiring, elegant user experiences
+    Output: Beautiful, innovative UI designs
+    
+  Step 3 - Hybrid UI Synthesis:
+    Use: provider-harmony-orchestrator
+    Action: Merge practical efficiency with creative beauty
+    Output: Superior UI combining both worlds
+    
+  Step 4 - Implementation:
+    Use: code-self-writer
+    Action: Create enhanced Generative UI system
+    Output: UI that is both efficient and inspiring
+
+Result: Generative UI достиг нового уровня с провайдерской гармонией
+```
 
 ### Evolution Indicators
 
