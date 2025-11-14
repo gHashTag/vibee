@@ -17,6 +17,7 @@ import {
   EventType,
 } from '@elizaos/core';
 import type { UIElement } from './telegram-ui-plugin';
+import { deployCommand, deployStatus, deployLogs } from './plugins/commands/deploy/handler';
 
 // ========================================
 // SERVICE ДЛЯ ОБРАБОТКИ КОМАНД
@@ -58,6 +59,7 @@ class TelegramCommandsService extends Service {
           { command: 'start', description: '🚀 Начать работу с ботом' },
           { command: 'menu', description: '📋 Главное меню' },
           { command: 'help', description: '❓ Помощь и справка' },
+          { command: 'deploy', description: '🚀 Деплой и статус сервера' },
           { command: 'quickstart', description: '⚡ Быстрый старт в разработке' },
           { command: 'tools', description: '🔧 Топ инструменты 2025' },
           { command: 'ai', description: '🤖 AI в разработке' },
@@ -98,6 +100,9 @@ class TelegramCommandsService extends Service {
       } else if (text === '/help' || text === 'help' || text === 'помощь') {
         logger.info('✅ /help command');
         await this.handleHelpCommand(runtime, message);
+      } else if (text.startsWith('/deploy') || text === 'deploy' || text === 'деплой') {
+        logger.info('✅ /deploy command');
+        await this.handleDeployCommand(runtime, message);
       } else if (text === 'покажи новости' || text === 'новости' || text === 'пришли новости') {
         logger.info('✅ Show news command');
         await this.handleShowNewsCommand(runtime, message);
@@ -317,6 +322,57 @@ class TelegramCommandsService extends Service {
       logger.info('✅ Help sent successfully with buttons');
     } catch (error) {
       logger.error('❌ Failed to send help:', error);
+    }
+  }
+
+  async handleDeployCommand(runtime: IAgentRuntime, message: Memory): Promise<void> {
+    logger.info('🚀 Handling deploy command');
+
+    const telegramService = runtime.getService('telegram');
+    if (!telegramService || !telegramService.bot) {
+      logger.error('❌ TelegramService not available');
+      return;
+    }
+
+    const chatId = message.content.channelId || message.content.chatId;
+    if (!chatId) return;
+
+    const deployText = `🚀 **Команда /deploy**
+
+ℹ️ Данная команда используется для деплоя проекта.
+
+📦 **Текущий статус:**
+├ 🟢 Ветка: \`main\`
+├ 🟢 Статус: Готов к деплою
+└ 🟢 Версия: Последняя
+
+🔗 **Доступные команды деплоя:**
+├ \`/deploy status\` - статус сервера
+├ \`/deploy logs\` - последние логи
+└ \`/deploy restart\` - перезапуск бота (только для админов)
+
+⚙️ Для деплоя используйте:
+\`\`\`
+./deploy.sh
+\`\`\`
+
+🤖 Проект: Vibee AI Agent
+📍 Репозиторий: github.com/gHashTag/vibee`;
+
+    try {
+      await telegramService.bot.telegram.sendMessage(chatId, deployText, {
+        parse_mode: 'Markdown',
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: '📊 Статус', callback_data: 'deploy_status' }],
+            [{ text: '📜 Логи', callback_data: 'deploy_logs' }],
+            [{ text: '🔄 Перезапуск', callback_data: 'deploy_restart' }],
+          ],
+        },
+      });
+      logger.info('✅ Deploy info sent successfully');
+    } catch (error) {
+      logger.error('❌ Failed to send deploy info:', error);
     }
   }
 
