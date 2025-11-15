@@ -1,4 +1,4 @@
-FROM node:23.3.0-slim
+FROM node:23.11.1-slim
 
 # Install essential dependencies for the build process
 RUN apt-get update && \
