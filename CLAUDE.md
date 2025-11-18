@@ -218,3 +218,221 @@ VibeMates integrate with:
 5. **Specialization**: Each VibeMate is expert in their domain
 6. **Russian-First**: All VibeMates communicate in Russian
 7. **Practical Focus**: Examples and hands-on experience over theory
+
+## Agent SDK Best Practices
+
+### Overview
+
+Implementation of Anthropic's Claude Agent SDK best practices for cloud development and pipeline testing.
+
+**References**:
+- https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk
+- https://www.anthropic.com/engineering/claude-code-sandboxing
+
+### Core Components
+
+Located in `src/agent-sdk/`:
+
+#### 1. Agent Pipeline (Gather → Action → Verify)
+
+The fundamental agent loop pattern:
+
+```typescript
+import { createPipeline, executePipeline } from './src/agent-sdk';
+
+const pipeline = createPipeline({
+  maxIterations: 5,
+  verificationThreshold: 80,
+  enableCompaction: true,
+});
+
+const result = await pipeline.execute(
+  runtime,
+  memory,
+  state,
+  async (ctx, input) => { /* Gather context */ },
+  async (ctx, input) => { /* Take action */ },
+  async (ctx, output) => { /* Verify work */ }
+);
+```
+
+#### 2. Sandbox Configuration (Security)
+
+Dual-boundary approach with filesystem and network isolation:
+
+```typescript
+import { createSandbox, sandboxValidators } from './src/agent-sdk';
+
+const sandbox = createSandbox({
+  filesystem: {
+    allowedPaths: [process.cwd(), '/tmp'],
+    blockedPaths: ['~/.ssh', '~/.aws'],
+  },
+  network: {
+    allowedDomains: ['api.openai.com', 'github.com'],
+    allowLocalhost: true,
+  },
+  git: {
+    allowedBranches: ['main', 'feature/*', 'claude/*'],
+    allowForcePush: false,
+  },
+});
+
+// Validate before operations
+if (sandbox.validateFilesystemAccess('/path/to/file')) {
+  // Safe to access
+}
+```
+
+#### 3. Subagent System (Parallelization)
+
+Enable parallel execution with context isolation:
+
+```typescript
+import { createSubagentManager, executeParallelTasks } from './src/agent-sdk';
+
+const manager = createSubagentManager();
+
+// Create and execute parallel tasks
+const result = await manager.executeParallel([
+  manager.createTask('code-searcher', 'Find all TODO comments'),
+  manager.createTask('file-processor', 'Process configuration files'),
+  manager.createTask('data-analyzer', 'Analyze performance metrics'),
+]);
+
+console.log(`Success rate: ${result.successRate}%`);
+```
+
+#### 4. Context Compaction
+
+Manage long-running sessions by summarizing history:
+
+```typescript
+import { createCompactor, compactContext } from './src/agent-sdk';
+
+const compactor = createCompactor({
+  threshold: 100000,      // Trigger at 100k tokens
+  targetSize: 70000,      // Target 70k after compaction
+  preserveRecent: 10,     // Keep last 10 messages
+});
+
+if (compactor.needsCompaction(content)) {
+  const result = await compactor.compact(messages, runtime);
+  console.log(`Reduced ${result.reduction}% tokens`);
+}
+```
+
+#### 5. Verification System
+
+Three verification approaches:
+
+```typescript
+import { verify, createVerifier, BUILT_IN_RULES, CODE_RULES } from './src/agent-sdk';
+
+// Quick validation
+const isValid = await verify.isValid(output);
+
+// Code verification
+const codeResult = await verify.code(generatedCode);
+
+// Full verification with custom rules
+const verifier = createVerifier();
+const result = await verifier.verify(output, {
+  strategy: 'combined',
+  rules: { rules: [...BUILT_IN_RULES, ...CODE_RULES], strictMode: false },
+  llmJudge: { criteria: ['Correctness', 'Completeness', 'Quality'] },
+});
+```
+
+#### 6. Pipeline Testing
+
+Test pipelines in isolated environments:
+
+```typescript
+import { createPipelineTester, createExampleTestCases, runPipelineTests } from './src/agent-sdk';
+
+const tester = createPipelineTester({
+  sandbox: { enabled: true },
+  parallelTests: 5,
+  verbose: true,
+});
+
+const report = await tester.runSuite({
+  id: 'my-tests',
+  name: 'Pipeline Tests',
+  testCases: createExampleTestCases(),
+}, runtime);
+
+console.log(`Passed: ${report.passed}/${report.totalTests}`);
+```
+
+### ElizaOS Plugin Integration
+
+```typescript
+import { agentSDKPlugin } from './src/agent-sdk/plugin';
+
+export const projectAgent: ProjectAgent = {
+  character,
+  plugins: [
+    agentSDKPlugin, // Add Agent SDK capabilities
+    // ... other plugins
+  ],
+};
+```
+
+### Cloud Development Setup
+
+Configuration file: `.claude/sandbox-config.json`
+
+```json
+{
+  "sandbox": {
+    "enabled": true,
+    "filesystem": {
+      "allowed": ["/home/user/vibee", "/tmp"],
+      "blocked": ["~/.ssh", "~/.aws"]
+    },
+    "network": {
+      "allowed": ["api.openai.com", "github.com"],
+      "allowLocalhost": true
+    }
+  },
+  "pipeline": {
+    "maxIterations": 5,
+    "verificationThreshold": 80
+  }
+}
+```
+
+### Best Practices
+
+1. **Gather → Action → Verify Loop**: Always use the pipeline for complex tasks
+2. **Sandbox Everything**: Enable filesystem and network isolation
+3. **Parallelize with Subagents**: Use subagents for independent tasks
+4. **Compact Long Sessions**: Prevent context exhaustion
+5. **Verify Before Proceed**: Use rules, visual, or LLM-as-Judge
+6. **Test in Isolation**: Run pipeline tests in sandboxed environments
+
+### Key Files
+
+- `src/agent-sdk/index.ts` - Main exports
+- `src/agent-sdk/core/pipeline.ts` - Agent Pipeline
+- `src/agent-sdk/core/sandbox.ts` - Sandbox Manager
+- `src/agent-sdk/core/subagents.ts` - Subagent System
+- `src/agent-sdk/core/compaction.ts` - Context Compaction
+- `src/agent-sdk/core/verification.ts` - Verification System
+- `src/agent-sdk/testing/pipeline-tester.ts` - Pipeline Testing
+- `src/agent-sdk/plugin.ts` - ElizaOS Plugin
+- `src/agent-sdk/types.ts` - TypeScript Types
+- `.claude/sandbox-config.json` - Sandbox Configuration
+- `tests/unit/agent-sdk.test.ts` - Unit Tests
+
+### Running Tests
+
+```bash
+# Run Agent SDK tests
+npm test -- tests/unit/agent-sdk.test.ts
+
+# Run with coverage
+npm run test:coverage -- tests/unit/agent-sdk.test.ts
+```

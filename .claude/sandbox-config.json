@@ -1,0 +1,106 @@
+{
+  "$schema": "https://claude.ai/schemas/sandbox-config.json",
+  "version": "1.0",
+  "description": "Claude Code sandbox configuration for Vibee project",
+
+  "sandbox": {
+    "enabled": true,
+
+    "filesystem": {
+      "allowed": [
+        "/home/user/vibee",
+        "/tmp",
+        "/var/tmp"
+      ],
+      "blocked": [
+        "/etc/passwd",
+        "/etc/shadow",
+        "~/.ssh",
+        "~/.gnupg",
+        "~/.aws",
+        "~/.config/gcloud",
+        "/root"
+      ],
+      "workdir": "/home/user/vibee"
+    },
+
+    "network": {
+      "allowed": [
+        "api.openai.com",
+        "api.anthropic.com",
+        "api.telegram.org",
+        "generativelanguage.googleapis.com",
+        "api.replicate.com",
+        "fal.run",
+        "api.stability.ai",
+        "api.elevenlabs.io",
+        "huggingface.co",
+        "api.infisical.com",
+        "github.com",
+        "api.github.com",
+        "registry.npmjs.org",
+        "bun.sh",
+        "localhost",
+        "127.0.0.1"
+      ],
+      "blocked": [],
+      "allowLocalhost": true
+    },
+
+    "resources": {
+      "maxMemoryMb": 4096,
+      "maxCpuPercent": 80,
+      "maxDiskMb": 10240,
+      "timeoutMs": 600000
+    },
+
+    "git": {
+      "allowed": [
+        "main",
+        "master",
+        "develop",
+        "feature/*",
+        "fix/*",
+        "claude/*"
+      ],
+      "blocked": [],
+      "allowForcePush": false,
+      "signCommits": false
+    }
+  },
+
+  "pipeline": {
+    "maxIterations": 5,
+    "maxRetries": 3,
+    "timeoutMs": 300000,
+    "verificationThreshold": 80,
+    "enableCompaction": true,
+    "compactionThreshold": 100000
+  },
+
+  "testing": {
+    "parallelTests": 5,
+    "verbose": true,
+    "stopOnFirstFailure": false,
+    "coverage": {
+      "enabled": true,
+      "threshold": 80
+    }
+  },
+
+  "cloud": {
+    "provider": "docker",
+    "storage": {
+      "type": "local",
+      "path": "/home/user/vibee/data"
+    },
+    "secrets": {
+      "provider": "infisical",
+      "config": {}
+    },
+    "monitoring": {
+      "enabled": true,
+      "logLevel": "info"
+    }
+  }
+}
