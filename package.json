@@ -27,9 +27,9 @@
     "dist"
   ],
   "dependencies": {
-    "@elizaos/cli": "1.6.4",
+    "@elizaos/cli": "1.6.5",
     "@elizaos/client": "1.6.4",
-    "@elizaos/core": "1.6.4",
+    "@elizaos/core": "1.6.5",
     "@elizaos/plugin-bootstrap": "1.6.4",
     "@elizaos/plugin-ollama": "^1.2.4",
     "@elizaos/plugin-openrouter": "^1.5.15",
