@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "@elizaos/cli": "1.6.5",
-    "@elizaos/client": "1.6.4",
+    "@elizaos/client": "1.7.2",
     "@elizaos/core": "1.6.5",
     "@elizaos/plugin-bootstrap": "1.6.4",
     "@elizaos/plugin-ollama": "^1.2.4",
